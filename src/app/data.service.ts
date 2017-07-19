@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
 
-    private baseUrl = 'https://cors-anywhere.herokuapp.com/https://wellnessjebapp.herokuapp.com/api/'
+    private baseUrl = ' http://localhost:8080/api/'
 
     constructor (private http: Http) {}
 
@@ -38,7 +38,7 @@ export class DataService {
 
     addRecord(endpoint: string, record:object): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}`;
-        console.log(apiUrl)
+        console.log("URL" + apiUrl, record)
         return this.http.post(apiUrl, record)
             .map(this.extractData)
             .catch(this.handleError);
