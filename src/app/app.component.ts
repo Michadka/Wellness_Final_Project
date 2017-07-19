@@ -6,7 +6,7 @@ import { AdminComponent }   from './admin/admin.component';
 
 
 import { MemberFormComponent }   from './member-form/member-form.component';
-
+// import { AboutComponent }   from './about/about.component'; // DAB
 
 
 

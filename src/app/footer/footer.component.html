@@ -1,34 +1,46 @@
 <div class="footer-dark">
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-md-push-6 item text">
-                        <h3><a href="index.html" style="color:#ffffff;">Wellness Events</a></h3>
-                        <p>A site where fitness tracker owners can join upcoming individual and team events,.</p>
-                    </div>
-                    <div class="col-md-3 col-md-pull-6 col-sm-4 item">
-                        <h3>Site Navigartion</h3>
-                        <ul>
-                            <li><a href="create-user.html">Create User</a></li>
-                            <li><a href="modify-user.html">Modify User</a></li>
-                            <li><a href="join-event.html">Join Event</a></li>
-                            <li><a href="modify-participation.html">Modify Participation</a></li>
-                            <li><a href="create-event.html">Create Event</a></li>
-                            <li><a href="modify-event.html">Modify Event</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 col-md-pull-6 col-sm-4 item">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="about.html#wellness-events">Wellness Events</a></li>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-push-6 item text">
+          <h3><a routerLink="/home" style="color:#ffffff;">Wellness Events</a></h3>
+          <!--<h3><a href="index.html" style="color:#ffffff;">Wellness Events</a></h3>-->
+          <p>A site where fitness tracker owners can join upcoming individual and team events,.</p>
+        </div>
+        <div class="col-md-3 col-md-pull-6 col-sm-4 item">
+          <h3>Site Navigartion</h3>
+          <ul>
+            <li routerLinkActive="active"><a routerLink="/member-form">Create User</a></li>
+            <li routerLinkActive="active"><a routerLink="/member-form">Modify User</a></li>
+            <li routerLinkActive="active"><a routerLink="/wellnessevent">Join Event</a></li>
+            <li routerLinkActive="active"><a routerLink="/wellnessevent">Modify Participation</a></li>
+            <!--The following two items are for admin and need to be toggled off/on per user ID-->
+            <li routerLinkActive="active"><a routerLink="/wellnessevent-form">Create Event</a></li>
+            <li routerLinkActive="active"><a routerLink="/wellnessevent-form">Modify Event</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-md-pull-6 col-sm-4 item">
+          <h3>About</h3>
+          <ul>
+            <li routerLinkActive="active"><a routerLink="/about">Wellness Events</a></li>
+            <li routerLinkActive="active"><a routerLink="/about">Site Creators</a></li>
+            <li routerLinkActive="active"><a routerLink="/about">Site Technologies/Tools</a></li>
+            <li routerLinkActive="active"><a routerLink="/about">Terms of Service</a></li>
+
+            <!--<li><a href="about.html#wellness-events">Wellness Events</a></li>
                             <li><a href="about.html#site-creators">Site Creators</a></li>
                             <li><a href="about.html#site-tech-tools">Site Technologies/Tools </a></li>
-                            <li><a href="about.html#terms-of-service">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-12 col-sm-4 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
-                </div>
-                <p class="copyright">Wellness Events © 2017</p>
-            </div>
-        </footer>
+                            <li><a href="about.html#terms-of-service">Terms of Service</a></li>-->
+          </ul>
+        </div>
+        <div class="col-md-12 col-sm-4 item social">
+          <a href="https://www.facebook.com/" target="_blank"><i class="icon ion-social-facebook"></i></a>
+          <a href="https://twitter.com/twitter?lang=en" target="_blank"><i class="icon ion-social-twitter"></i></a>
+          <a href="https://www.snapchat.com/" target="_blank"><i class="icon ion-social-snapchat"></i></a>
+          <a href="https://www.instagram.com/?hl=en" target="_blank"><i class="icon ion-social-instagram"></i></a>
+        </div>
+      </div>
+      <p class="copyright">Wellness Events © 2017</p>
     </div>
+  </footer>
+</div>

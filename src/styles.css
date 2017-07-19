@@ -2,6 +2,14 @@
 .container.hero {
   display:flex;
   justify-content:center;
+  flex-direction: column;
+  align-content: center;
+  height: 60px;
+  background-color: #269d9d;
+  color: white;
+  border: 2px solid;
+  border-radius: 12px;
+  /*margin-top: -8px;*/
 }
 
 .container .jumbotron, .container-fluid .jumbotron {
@@ -10,4 +18,8 @@
   justify-content:flex-end;
   align-content:flex-end;
   font-weight:700;
+}
+
+.window-title {
+  padding-top: 14px;
 }
