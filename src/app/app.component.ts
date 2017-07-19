@@ -1,4 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { MemberComponent }   from './member/member.component';
+import { WellnesseventComponent }   from './wellnessevent/wellnessevent.component';
+import { AdminComponent }   from './admin/admin.component';
+
+
+import { MemberFormComponent }   from './member-form/member-form.component';
+
+
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +16,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Wellness Event Tracker';
+  @Input() erroMessage: string;
 }
