@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 export class DataService {
 
     private baseUrl = ' http://localhost:8080/api/'
+    private baseLoginUrl = ' http://localhost:8080/'
 
     constructor (private http: Http) {}
 
@@ -23,6 +24,16 @@ export class DataService {
     getRecord(endpoint: string, id): Observable<object> {
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
         return this.http.get(apiUrl)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    getLoginRecord(endpoint: string, record:object): Observable<object> {
+        let apiUrl = `${this.baseLoginUrl}${endpoint}`;
+        console.log("before")
+        console.log(apiUrl, record)
+        console.log("after")
+        return this.http.post(apiUrl, record)
             .map(this.extractData)
             .catch(this.handleError);
     }
