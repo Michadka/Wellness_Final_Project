@@ -19,21 +19,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let e of events">
                             <td>
-                                <label class="custom-control custom-checkbox">
+                                <label class="custom-control">
                                     <input type="checkbox" class="custom-control-input">
                                     <span class="custom-control-indicator"></span>
                                 </label>
                             </td>
-                            <td>John's Step Chanllenge</td>
-                            <td>August GoForCode challenge</td>
-                            <td>Step Count</td>
-                            <td>Carmel, IN</td>
-                            <td>August 1, 2017</td>
-                            <td>August 31, 2017</td>
+                            <td>{{e.eventName}}</td>
+                            <td>{{e.type}}</td>
+                            <td>{{e.description}}</td>
+                            <td>{{e.location}}</td>
+                            <td>{{e.startDate}}</td>
+                            <td>{{e.endDate}}</td>
                         </tr>
-                        <tr>
+                        <!--<tr>
                             <td>
                                 <label class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input">
@@ -46,35 +46,7 @@
                             <td>Fisher, IN</td>
                             <td>September 1, 2017</td>
                             <td>September 30, 2017</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td>Joe's Loose that Gelato</td>
-                            <td>September GoForCode Challenge</td>
-                            <td>10K</td>
-                            <td>Dover, NH</td>
-                            <td>September 1, 2017</td>
-                            <td>September 30, 2017</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td>Dave's Indy Get Lean</td>
-                            <td>Loose that Indy weight in September</td>
-                            <td>Step Count</td>
-                            <td>Seacoast, NH</td>
-                            <td>September 1, 2017</td>
-                            <td>September 30, 2017</td>
-                        </tr>                        
+                        </tr>                        -->
                     </tbody>
                 </table>
             </div>

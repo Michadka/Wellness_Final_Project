@@ -76,6 +76,9 @@
 .container.hero {
   display:flex;
   justify-content:center;
+  /*height:80px;*/
+  /*margin:-28px 27px 0px;*/
+  font-size:60px;
 }
 
 .container .jumbotron, .container-fluid .jumbotron {
@@ -84,5 +87,9 @@
   justify-content:flex-end;
   align-content:flex-end;
   font-weight:700;
+  background-image:url(../../assets/img/running-women-baby.jpg);
+  width:640px;
+  margin:60px 0px 0px;
+  height:400px;
 }
 

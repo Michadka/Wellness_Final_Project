@@ -18,6 +18,8 @@ import { DeleteConfirmComponent } from './delete-confirm/delete-confirm.componen
 import { DataService } from './data.service';
 import { SigninComponent } from './signin/signin.component';
 import { AboutComponent } from './about/about.component';
+import { AdminEventComponent } from './admin-event/admin-event.component';
+import { AdminUserComponent } from './admin-user/admin-user.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { AboutComponent } from './about/about.component';
     DeleteConfirmComponent,
     AdminComponent,
     SigninComponent,
-    AboutComponent
+    AboutComponent,
+    AdminEventComponent,
+    AdminUserComponent
   ],
   imports: [
     BrowserModule,
