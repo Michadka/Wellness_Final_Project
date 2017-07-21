@@ -14,7 +14,7 @@ import _ from 'lodash';
 
 export class MemberFormComponent implements OnInit {
   members: any[];
-  member: object;
+  member: any;
   errorMessage: string;
   successMessage: string;
 
@@ -27,23 +27,6 @@ export class MemberFormComponent implements OnInit {
     private router: Router,
     private location: Location
   ) {}
-
-  getMembers(){
-    console.log("in member-form.ts - getMembers()")
-    this.dataService.getRecords("getAllMembers")
-    .subscribe(
-      members => {
-        this.members = members
-      console.log(this.members)
-    });
-  }
-
-  getRecordForEdit(){
-    console.log("in member-form.ts - getRecordForEdit()")
-    this.route.params
-    .switchMap((params: Params) => this.dataService.getRecord("member", +params['id']))
-    .subscribe(member => this.member = member);
-  }
 
   saveMember(member: NgForm){
     console.log("member.value I = " + member.value.id)
@@ -62,18 +45,16 @@ export class MemberFormComponent implements OnInit {
             member => {
               this.member = member;
               this.successMessage = "Record added successfully",
-              localStorage.setItem("currentUser", JSON.stringify(this.member))},
-            error =>  this.errorMessage = <any>error)
-            this.router.navigate(['/home']),
+              localStorage.setItem("currentUser", JSON.stringify(this.member))
                   console.log(this.member)
                   console.log("This.Member = " + this.member)
                   console.log("Member = " + member)
-                  console.log("This.Member.id = " + member.value.id)
+          },
+            error =>  this.errorMessage = <any>error)
+            this.router.navigate(['/home']),
             this.member = {};
     }
   }
-
-
 
 
   // activateMember(id:number) {
@@ -87,11 +68,7 @@ export class MemberFormComponent implements OnInit {
 
   ngOnInit() {
       console.log("member-form onInit")
-      // console.log(params)
-      this.route.params
-        .subscribe((params: Params) => {
-          (+params['id']) ? this.getRecordForEdit() : null;
-        });
+      this.member = JSON.parse(localStorage.getItem("currentUser"))
   }
 
   onValueChanged(data?: any) {
