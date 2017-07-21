@@ -11,8 +11,8 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./wellnessevent-form.component.css']
 })
 export class WellnesseventFormComponent implements OnInit {
-  events: any[];
-  event: object;
+  // events: any[];
+  event: object = {};
   errorMessage: string;
   successMessage: string;
 
@@ -24,15 +24,6 @@ export class WellnesseventFormComponent implements OnInit {
     'location': '',
     'description': ''
   };
-
-    // "id": 1,
-    // "eventName": "Event1",
-    // "startDate": "Date1",
-    // "endDate": "Date2",
-    // "location": "Indy",
-    // "description": "StepsForever",
-    // "type": "Community",
-    // "members": []
 
 // mySQL
   // type
@@ -77,10 +68,14 @@ export class WellnesseventFormComponent implements OnInit {
     private location: Location
   ) {}
 
-  getRecordForEdit() {
-    this.route.params
-      .switchMap((params: Params) => this.dataService.getRecord('event', +params['id']))
-      .subscribe(event => this.event = event);
+  getRecordForEdit(id) {
+      this.dataService.getRecord('event', id)
+      .subscribe(
+        event => {
+          this.event = event;
+          console.log('In getRecordForEdit');
+          console.log(this.event);
+        });
   }
 
   saveEvent(event: NgForm) {
@@ -108,8 +103,11 @@ export class WellnesseventFormComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .subscribe((params: Params) => {
-        (+params['id']) ? this.getRecordForEdit() : null;
+        (+params['id']) ? this.getRecordForEdit(+params['id']) : null;
+        console.log('ID = ' + +params['id']);
       });
+      console.log('In ngOnInit');
+      console.log(this.event);
   }
 
   onValueChanged(data ?: any) {
