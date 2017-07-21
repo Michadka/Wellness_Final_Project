@@ -4,6 +4,7 @@ import {  NgForm } from '@angular/forms';
 import {  ActivatedRoute,  Params } from '@angular/router';
 import {  Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
+import { EventType } from './eventType';
 
 @Component({
   selector: 'app-wellnessevent-form',
@@ -16,6 +17,12 @@ export class WellnesseventFormComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
 
+  eventTypes = [
+    new EventType(1, '5K'),
+    new EventType(2, '10K'),
+    new EventType(3, 'Step Count')
+  ]
+
   formErrors = {
     // 'type': '',
     'eventName': '',
@@ -24,14 +31,6 @@ export class WellnesseventFormComponent implements OnInit {
     'location': '',
     'description': ''
   };
-
-// mySQL
-  // type
-  // event_name
-  // start_date
-  // end_date
-  // location
-  // description
 
   validationMessages = {
     // 'type': {
@@ -69,7 +68,7 @@ export class WellnesseventFormComponent implements OnInit {
   ) {}
 
   getRecordForEdit(id) {
-      this.dataService.getRecord('event', id)
+      this.dataService.getRecord('eventbyid', id)
       .subscribe(
         event => {
           this.event = event;
@@ -109,6 +108,10 @@ export class WellnesseventFormComponent implements OnInit {
       console.log('In ngOnInit');
       console.log(this.event);
   }
+
+  // onSelect(countryid) {
+  //   this.states = this._dataService.getStates().filter((item)=> item.countryid == countryid);
+  // }
 
   onValueChanged(data ?: any) {
     let form = this.eventForm.form;
