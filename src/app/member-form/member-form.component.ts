@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { DataService } from '../data.service';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }               from '@angular/common';
 import 'rxjs/add/operator/switchMap';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-member-form',
@@ -23,10 +24,12 @@ export class MemberFormComponent implements OnInit {
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) {}
 
   getMembers(){
+    console.log("in member-form.ts - getMembers()")
     this.dataService.getRecords("getAllMembers")
     .subscribe(
       members => {
@@ -36,6 +39,7 @@ export class MemberFormComponent implements OnInit {
   }
 
   getRecordForEdit(){
+    console.log("in member-form.ts - getRecordForEdit()")
     this.route.params
     .switchMap((params: Params) => this.dataService.getRecord("member", +params['id']))
     .subscribe(member => this.member = member);
@@ -47,6 +51,7 @@ export class MemberFormComponent implements OnInit {
     console.log("member.value P = " + member.value.password)
     console.log("member.value S = " + member.value.screenName)
     if(typeof member.value.id === "number"){
+      console.log("identified an id exists so edit member")
       this.dataService.editRecord("member", member.value, member.value.id)
           .subscribe(
             member => this.successMessage = "Record updated successfully",
@@ -54,13 +59,35 @@ export class MemberFormComponent implements OnInit {
     }else{
       this.dataService.addRecord("member", member.value)
           .subscribe(
-            member => this.successMessage = "Record added successfully",
-            error =>  this.errorMessage = <any>error);
+            member => {
+              this.member = member;
+              this.successMessage = "Record added successfully",
+              localStorage.setItem("currentUser", JSON.stringify(this.member))},
+            error =>  this.errorMessage = <any>error)
+            this.router.navigate(['/home']),
+                  console.log(this.member)
+                  console.log("This.Member = " + this.member)
+                  console.log("Member = " + member)
+                  console.log("This.Member.id = " + member.value.id)
             this.member = {};
     }
   }
 
+
+
+
+  // activateMember(id:number) {
+  //   this.dataService.updateRecord("member", id)
+  //     .subscribe(
+  //       member => {this.successMessage = "You are now active"; this.member(); },
+  //       error =>  this.errorMessage = <any>error);
+  // }
+
+
+
   ngOnInit() {
+      console.log("member-form onInit")
+      // console.log(params)
       this.route.params
         .subscribe((params: Params) => {
           (+params['id']) ? this.getRecordForEdit() : null;

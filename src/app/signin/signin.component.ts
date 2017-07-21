@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output } from '@angular/core';
 import { DataService } from '../data.service';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }               from '@angular/common';
 import 'rxjs/add/operator/switchMap';
+import _ from 'lodash';
 
 @Component({
   selector: 'app-signin',
@@ -13,20 +14,14 @@ import 'rxjs/add/operator/switchMap';
 
 export class SigninComponent implements OnInit {
 
-  @Output() refresh = new EventEmitter<object>();
-
-  @Input() 
-  screenName;//users screenName
-  email:string; //users registered email address
-  admin:string;//Is this member an admin (True, false)
-  active: string;//Is this member active (True, false)
-
-  member: object;
+  member: any;
+  loginError: string;
 
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private router: Router
   ) {}
 
   signinForm: NgForm;
@@ -37,30 +32,27 @@ export class SigninComponent implements OnInit {
   }
 
   getMember(record){
-    //console.log(record.value)
+    localStorage.removeItem("currentUser");
+    console.log("signin.ts - getMember()")
     this.dataService.getLoginRecord("open/login/", record.value)
     .subscribe(
       member => {
         this.member = member;
+      console.log(member)
+      localStorage.setItem("currentUser", JSON.stringify(this.member))
+      this.router.navigate(['/home'])
+    },
+    error => this.loginError = "invalid login"
 
-    // this.screenName = this.member['screenName'];
-    // this.email = this.member['email'];
-    // this.admin = this.member['admin'];
-    // console.log(this.email);
-
-    this.refresh.emit(this.member)
-
-    });
+    );
   }
 
   onValueChanged(data?: any) {
     let form = this.signinForm.form;
-
     for (let field in this.formErrors) {
       // clear previous error message (if any)
       this.formErrors[field] = '';
       const control = form.get(field);
-
       if (control && control.dirty && !control.valid) {
         const messages = this.validationMessages[field];
         for (const key in control.errors) {

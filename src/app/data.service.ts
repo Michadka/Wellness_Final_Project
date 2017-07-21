@@ -15,6 +15,7 @@ export class DataService {
     constructor (private http: Http) {}
 
     getRecords(endpoint: string): Observable<any[]> {
+        console.log("data.service - getRecords()")
         let apiUrl = this.baseUrl+endpoint;
         return this.http.get(apiUrl)
             .map(this.extractData)
@@ -22,6 +23,7 @@ export class DataService {
     }
 
     getRecord(endpoint: string, id): Observable<object> {
+        console.log("data.service - getRecord()")
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
         return this.http.get(apiUrl)
             .map(this.extractData)
@@ -29,6 +31,7 @@ export class DataService {
     }
 
     getLoginRecord(endpoint: string, record:object): Observable<object> {
+        console.log("data.service - getLoginRecord()")
         let apiUrl = `${this.baseLoginUrl}${endpoint}`;
         console.log("before")
         console.log(apiUrl, record)
@@ -39,6 +42,7 @@ export class DataService {
     }
 
     editRecord(endpoint: string, record:object, id:number): Observable<object> {
+        console.log("data.service - editRecord()")
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
         console.log(record)
         console.log(apiUrl)
@@ -56,6 +60,7 @@ export class DataService {
     }
 
     private extractData(res: Response) {
+        console.log("data.service - extractData()")
         let results = res.json();
         return results || [];
     }

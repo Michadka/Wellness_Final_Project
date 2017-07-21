@@ -6,12 +6,11 @@
       </div>
       <div class="collapse navbar-collapse" id="navcol-1">
         <ul class="nav navbar-nav">
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" target="_blank">Users <span class="caret"></span></a>
+          <li  *ngIf="user" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" target="_blank">Users <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li role="presentation"><a routerLink="/member-form">Create User</a></li>
-              <li role="presentation"><a routerLink="/member-form">Modify User</a></li>
-              <li role="presentation"><a routerLink="/wellnessevent">Join Event</a></li>
-              <li role="presentation"><a routerLink="/wellnessevent">Modify Participation</a></li>
+
+              <li role="presentation"><a routerLink="/member-form">Modify Member</a></li>
+              <li role="presentation"><a routerLink="/wellnessevent">Events</a></li>
             </ul>
           </li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" target="_blank">Administrators <span class="caret"></span></a>
@@ -24,8 +23,16 @@
           <li role="presentation"><a routerLink="/about">About </a></li>
         </ul>
         <p class="navbar-text navbar-right">
-          <a class="navbar-link login" routerLink="/signin">Log In</a>
-          <a class="btn btn-default action-button" role="button" routerLink="/member-form">Sign Up</a>
+          <span *ngIf="!user">
+            <a class="navbar-link login" routerLink="/signin">Log In</a>
+            <a class="btn btn-default action-button" role="button" routerLink="/member-form">Sign Up</a>
+          </span>
+
+          <span *ngIf="user"  class="navbar-link login">
+            Hello, {{user.screenName}}!          
+             <br>
+            <a class="navbar-link login" (click)="logOutUser()">Not you? Click here.</a>
+          </span>
         </p>
       </div>
     </div>

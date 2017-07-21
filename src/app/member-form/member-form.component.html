@@ -1,6 +1,6 @@
 <div class="window-title">
   <div class="container hero">
-    <h2 class="text-center">Create / Modify User...</h2>
+    <h2 class="text-center">Add or Modify User...</h2>
   </div>
 </div>
 <div class="register-photo">
@@ -10,7 +10,7 @@
             <input [ngModel]="member?.id" ngModel #id="ngModel" type="hidden" name="id">
             <h2 class="text-center" style="margin:0px 0px 30px;">Complete all fields...</h2>
             <div class="form-group"><small>Email</small>
-                <input [ngModel]="member?.email" ngModel #email="ngModel"  class="form-control" type="email" name="email" placeholder="Email">
+                <input [ngModel]="member?.email"  #email="ngModel"  class="form-control" type="email" name="email" placeholder="Email">
             </div>
             <span *ngIf="formErrors.email" class="text-danger">
                 {{ formErrors.email }}
@@ -19,7 +19,7 @@
                 <input class="form-control" type="email" name="email-repeat" placeholder="Email (Repeat)">
             </div>-->
             <div class="form-group"><small>Password </small>
-                <input [ngModel]="member?.password" ngModel #password="ngModel"  class="form-control" type="password" name="password" placeholder="Password">
+                <input [ngModel]="member?.password"  #password="ngModel"  class="form-control" type="password" name="password" placeholder="Password">
             </div>
             <span *ngIf="formErrors.password" class="text-danger">
                 {{ formErrors.password }}
@@ -28,7 +28,7 @@
                 <input class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)">
             </div>-->
             <div class="form-group"><small>Screen Name</small>
-                <input [ngModel]="member?.screenName" ngModel #screenName="ngModel"  class="form-control" type="screenName" name="screenName" placeholder="Screen Name">
+                <input [ngModel]="member?.screenName"  #screenName="ngModel"  class="form-control" type="screenName" name="screenName" placeholder="Screen Name">
             </div>
             <span *ngIf="formErrors.screenName" class="text-danger">
                 {{ formErrors.screenName }}
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="form-group" style="height:110px;">
-                <button [disabled]="!memberForm.form.valid" routerLink="member" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Sign Up</button>
+                <button [disabled]="!memberForm.form.valid" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Sign Up</button>
                 <button class="btn btn-primary btn-block" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;">Cancel </button>
             </div>
             <a href="login.html" class="already">You already have an account? Login here.</a>

@@ -42,6 +42,7 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    RouterModule,
     HttpModule
   ],
   providers: [DataService],
