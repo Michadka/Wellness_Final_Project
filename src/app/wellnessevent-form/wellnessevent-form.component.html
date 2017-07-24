@@ -1,6 +1,8 @@
 <div class="window-title">
   <div class="container hero">
-    <h2 class="text-center">Create / Modify Event...</h2>
+    <!--<h2 class="text-center">Create / Modify Event...</h2>-->
+    <!--<h2 class="text-center">{{title}}</h2>-->
+    <h2 class="text-center">{{title}}</h2>
   </div>
 </div>
 <!--{{wellnessEvent | json}}-->
@@ -38,8 +40,8 @@
           </div>
           <div class="form-group" style="height:110px;margin:25px 0px 15px;">
               <!--<button [disabled]="!eventForm.form.valid" routerLink="wellnessevent/add" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Submit Event</button>-->
-              <button class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Submit Event</button>
-              <button class="btn btn-primary btn-block" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;">Cancel</button>
+              <button class="btn btn-primary btn-block" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;" >Submit Event</button>
+              <button class="btn btn-primary btn-block" [routerLink]="['/home']" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;" >Cancel</button>
           </div>
       </form>
   </div>

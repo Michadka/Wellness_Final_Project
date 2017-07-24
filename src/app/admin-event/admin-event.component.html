@@ -9,7 +9,7 @@
                 <table class="table table-bordered table-sm m-0">
                     <thead class="">
                         <tr>
-                            <th>Edit</th>
+                            <th>Modify/List</th>
                             <th>Event Name</th>
                             <th>Event Type</th>
                             <th>Description</th>
@@ -22,8 +22,12 @@
                         <tr *ngFor="let e of events">
                             <td>
                                 <label class="custom-control">
-                                    <input type="checkbox" class="custom-control-input" [routerLink]="['wellnessevent/edit/', e.id]">&nbsp;
-                                    <span class="custom-control-indicator"></span>
+                                    <!--<input type="checkbox" class="custom-control-input" [routerLink]="['wellnessevent/edit/', e.id]">&nbsp;-->
+                                    <!--<span class="custom-control-indicator"></span>-->
+                                    <button class="btn btn-primary" [routerLink]="['wellnessevent/edit/', e.id]"><em class="fa fa-pencil"></em></button>
+                                    <!--<a class="btn btn-danger" data-toggle="confirmation" data-singleton="true"><em class="fa fa-trash"></em></a>-->
+                                    <button (click)="deleteEvent(e.id)"class="btn btn-danger" data-toggle="confirmation" data-singleton="true" onclick="this.blur()" ><em class="fa fa-trash"></em></button>
+                                    <button class="btn btn-info"><em class="fa fa-users"></em></button>
                                 </label>
                             </td>
                             <td>{{e.eventName}}</td>
@@ -36,7 +40,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer p-0">
+            <!--<div class="card-footer p-0">
                 <nav aria-label="...">
                     <ul class="pagination justify-content-end mt-3 mr-3">
                         <li class="page-item disabled">
@@ -53,6 +57,6 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div>-->
         </div>
     </main>
