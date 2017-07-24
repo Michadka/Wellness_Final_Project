@@ -20,6 +20,7 @@ import { SigninComponent } from './signin/signin.component';
 import { AboutComponent } from './about/about.component';
 import { AdminEventComponent } from './admin-event/admin-event.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
+import { FacebookComponent } from './facebook/facebook.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
     SigninComponent,
     AboutComponent,
     AdminEventComponent,
-    AdminUserComponent
+    AdminUserComponent,
+    FacebookComponent
   ],
   imports: [
     BrowserModule,

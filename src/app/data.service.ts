@@ -9,20 +9,38 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
 
-    private baseUrl = ' http://localhost:8080/api/'
-    private baseLoginUrl = ' http://localhost:8080/'
+    private baseUrl = 'http://localhost:8080/api/'
+    private baseLoginUrl = 'http://localhost:8080/'
 
-    constructor (private http: Http) {}
+    private facebookUrl = 'http://graph.facebook.com/'
+    private facebookUser = 'michadka/feed?'
+    private facebookMessage = 'message=Look what I did'  
+    private facebookKey = '&access_token=4433558a0fdb8361de663e4814185a2d'
 
-    getRecords(endpoint: string): Observable<any[]> {
-        console.log("data.service - getRecords()")
-        let apiUrl = this.baseUrl+endpoint;
+
+    constructor (private http: Http) {
+        console.log(`${this.facebookUrl}${this.facebookUser}${this.facebookMessage}${this.facebookKey}`)
+
+    }
+
+    updateFacebook(endpoint: string): Observable<any[]> {
+        console.log("data.service - updateFacebook()")
+        let apiUrl = this.facebookUrl+this.facebookUser+this.facebookMessage+this.facebookKey;
         return this.http.get(apiUrl)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
+    getRecords(endpoint: string): Observable<any[]> {
+    console.log("data.service - getRecords()")
+    let apiUrl = this.baseUrl+endpoint;
+    return this.http.get(apiUrl)
+        .map(this.extractData)
+        .catch(this.handleError);
+    }
+
     getRecord(endpoint: string, id): Observable<object> {
+
         console.log("data.service - getRecord()")
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
         return this.http.get(apiUrl)
@@ -59,11 +77,26 @@ export class DataService {
             .catch(this.handleError);
     }
 
+    deleteRecord(endpoint: string, id: number): Observable<object> {
+       let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+       console.log('URL' + apiUrl)
+       return this.http.delete(apiUrl)
+           .map(this.extractData)
+           .catch(this.handleError);
+   }
+
     private extractData(res: Response) {
-        console.log("data.service - extractData()")
-        let results = res.json();
-        return results || [];
-    }
+       console.log("data.service - extractData()")
+       let results = false;
+       try {
+           results = res.json();
+       } catch (e) {
+           if (res.status !== 200) {
+               Observable.throw(e)
+           }
+       }
+       return results || [];
+   }
 
     private handleError(error: Response | any) {
         // In a real world app, you might use a remote logging infrastructure

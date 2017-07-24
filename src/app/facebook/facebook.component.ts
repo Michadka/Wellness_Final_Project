@@ -5,14 +5,16 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }               from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import _ from 'lodash';
+import { FacebookService, InitParams } from 'ngx-facebook';
 
 @Component({
-  selector: 'app-member-form',
-  templateUrl: './member-form.component.html',
-  styleUrls: ['./member-form.component.css']
+  selector: 'app-facebook',
+  templateUrl: './facebook.component.html',
+  styleUrls: ['./facebook.component.css']
 })
 
-export class MemberFormComponent implements OnInit {
+
+export class FacebookComponent implements OnInit {
   members: any[];
   member: any;
   errorMessage: string;
@@ -27,8 +29,17 @@ export class MemberFormComponent implements OnInit {
     private dataService: DataService,
     private route: ActivatedRoute,
     private router: Router,
-    private location: Location
-  ) {}
+    private location: Location,
+    private fb: FacebookService
+  ) {
+
+    const params: InitParams = {version: "v2.10"}
+    fb.init(params);
+
+  }
+
+    
+  
 
   saveMember(member: NgForm){
     console.log("member.value I = " + member.value.id)
@@ -56,76 +67,12 @@ export class MemberFormComponent implements OnInit {
             this.router.navigate(['/home']),
             this.member = {};
     }
+            // this.dataService.updateFacebook()
   }
-
-
-  // activateMember(id:number) {
-  //   this.dataService.updateRecord("member", id)
-  //     .subscribe(
-  //       member => {this.successMessage = "You are now active"; this.member(); },
-  //       error =>  this.errorMessage = <any>error);
-  // }
-
-
 
   ngOnInit() {
-      console.log("member-form onInit")
-      this.member = JSON.parse(localStorage.getItem("currentUser"))
-  }
-
-  onValueChanged(data?: any) {
-    let form = this.memberForm.form;
-
-    for (let field in this.formErrors) {
-      // clear previous error message (if any)
-      this.formErrors[field] = '';
-      const control = form.get(field);
-
-      if (control && control.dirty && !control.valid) {
-        const messages = this.validationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
-        }
-      }
-    }
-  }
-
-  formErrors = {
-    'email': '',
-    'email-repeat': '',
-    'password': '',
-    'password-repeat': '',
-    'screenname': ''
-  };
-
-  validationMessages = {
-    'email': {
-      'required': 'email is required.',
-      'minlength': 'email must be at least 5 characters long.'
-    },
-    'email-repeat': {
-      'required': 'email is required.',
-      'minlength': 'email must be at least 5 characters long.'
-    },
-    'password': {
-      'required': 'Password is required.'
-    },
-    'password-repeat': {
-      'required': 'Password is required.'
-    },
-    'screenname': {
-      'required': 'Screen name is required.',
-      'minlength': 'Screen name must be at least 3 characters long.'
-    }
-  };
-
-  emailCheck() {
-    //verify both emails are the same - only pass one from the form
 
   }
 
-  passwordCheck() {
-    //verify both passwords are the same - only pass one from the form
-  }
 
 }

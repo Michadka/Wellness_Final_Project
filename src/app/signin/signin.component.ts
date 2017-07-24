@@ -40,6 +40,7 @@ export class SigninComponent implements OnInit {
         this.member = member;
       console.log(member)
       localStorage.setItem("currentUser", JSON.stringify(this.member))
+      localStorage.setItem("adminStatus", JSON.stringify(this.member.admin))
       this.router.navigate(['/home'])
     },
     error => this.loginError = "invalid login"

@@ -40,7 +40,8 @@
                 </div>
             </div>
             <div class="form-group" style="height:110px;">
-                <button [disabled]="!memberForm.form.valid" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Sign Up</button>
+                <button  *ngIf="!user" [disabled]="!memberForm.form.valid" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Sign Up</button>
+                <button  *ngIf="user" [disabled]="!memberForm.form.valid" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Submit</button>
                 <button class="btn btn-primary btn-block" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;">Cancel </button>
             </div>
             <a href="login.html" class="already">You already have an account? Login here.</a>

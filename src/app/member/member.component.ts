@@ -8,6 +8,8 @@ import { Component, OnInit, Input, Pipe, PipeTransform, Output, EventEmitter  } 
 
 export class MemberComponent implements OnInit {
 
+user: object = JSON.parse(localStorage.getItem("currentUser"));
+
 ngOnInit(){}
 
   // ngOnInit(this.getMember(){
