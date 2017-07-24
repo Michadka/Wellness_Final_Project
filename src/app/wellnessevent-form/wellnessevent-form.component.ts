@@ -13,9 +13,10 @@ import { EventType } from './eventType';
 })
 export class WellnesseventFormComponent implements OnInit {
   // events: any[];
-  event: object = {};
+  wellnessEvent: object = {};
   errorMessage: string;
   successMessage: string;
+  eventNum = 0; // used to set the initial event type per received object
 
   eventTypes = [
     new EventType(1, '5K'),
@@ -71,31 +72,55 @@ export class WellnesseventFormComponent implements OnInit {
       this.dataService.getRecord('eventbyid', id)
       .subscribe(
         event => {
-          this.event = event;
+          this.wellnessEvent = event;
           console.log('In getRecordForEdit');
-          console.log(this.event);
+          console.log(this.wellnessEvent);
+          switch (this.wellnessEvent['eventType']) {
+            case '5K':
+              this.eventNum = 1;
+              break;
+            case '10K':
+              this.eventNum = 2;
+              break;
+            default:
+              this.eventNum = 3;
+          }
+          console.log('Event Num = ' + this.eventNum);
         });
   }
 
   saveEvent(event: NgForm) {
+    console.log('event.value.eventType = ' + event.value.eventType)
+    // tslint:disable-next-line:radix
+    switch (parseInt(event.value.eventType)) {
+      case 1:
+        event.value.eventType = '5K';
+        break;
+      case 2:
+        event.value.eventType = '10K';
+        break;
+      default:
+        event.value.eventType = 'Step Count';
+    }
+
     console.log('event.value id = ' + event.value.id)
-    console.log('event.value type = ' + event.value.type)
+    console.log('event.value eventType = ' + event.value.eventType)
     console.log('event.value eventName = ' + event.value.eventName)
     console.log('event.value startDate = ' + event.value.startDate)
     console.log('event.value endDate = ' + event.value.endDate)
     console.log('event.value location = ' + event.value.location)
     console.log('event.value description = ' + event.value.description)
     if (typeof event.value.id === 'number') {
-      this.dataService.editRecord('event', event.value, event.value.id)
+      this.dataService.editRecord('update/event', event.value, event.value.id)
           .subscribe(
             event => this.successMessage = 'Record updated successfully',
             error =>  this.errorMessage = <any>error);
     }else {
-      this.dataService.addRecord('event', event.value)
+      this.dataService.addRecord('add/event', event.value)
           .subscribe(
             event => this.successMessage = 'Record added successfully',
             error =>  this.errorMessage = <any>error);
-            this.event = {};
+            this.wellnessEvent = {};
     }
   }
 
@@ -106,7 +131,7 @@ export class WellnesseventFormComponent implements OnInit {
         console.log('ID = ' + +params['id']);
       });
       console.log('In ngOnInit');
-      console.log(this.event);
+      console.log(this.wellnessEvent);
   }
 
   // onSelect(countryid) {
