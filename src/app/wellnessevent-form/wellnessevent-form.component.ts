@@ -90,29 +90,13 @@ export class WellnesseventFormComponent implements OnInit {
   }
 
   saveEvent(event: NgForm) {
-    console.log('event.value.eventType = ' + event.value.eventType)
-    // tslint:disable-next-line:radix
-    // switch (parseInt(event.value.eventType)) {
-    //   case 1:
-    //     event.value.eventType = '5K';
-    //     console.log('case = 5K');
-    //     break;
-    //   case 2:
-    //     event.value.eventType = '10K';
-    //     console.log('case = 10K');
-    //     break;
-    //   default:
-    //     console.log('case = Step Count');
-    //     event.value.eventType = 'Step Count';
-    // }
-
-    console.log('event.value id = ' + event.value.id)
-    console.log('event.value eventType = ' + event.value.eventType)
-    console.log('event.value eventName = ' + event.value.eventName)
-    console.log('event.value startDate = ' + event.value.startDate)
-    console.log('event.value endDate = ' + event.value.endDate)
-    console.log('event.value location = ' + event.value.location)
-    console.log('event.value description = ' + event.value.description)
+    console.log('event.value id = ' + event.value.id);
+    console.log('event.value eventType = ' + event.value.eventType);
+    console.log('event.value eventName = ' + event.value.eventName);
+    console.log('event.value startDate = ' + event.value.startDate);
+    console.log('event.value endDate = ' + event.value.endDate);
+    console.log('event.value location = ' + event.value.location);
+    console.log('event.value description = ' + event.value.description);
     if (typeof event.value.id === 'number') {
       this.dataService.editRecord('update/event', event.value, event.value.id)
           .subscribe(
