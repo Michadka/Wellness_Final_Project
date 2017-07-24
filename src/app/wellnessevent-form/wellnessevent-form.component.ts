@@ -92,16 +92,19 @@ export class WellnesseventFormComponent implements OnInit {
   saveEvent(event: NgForm) {
     console.log('event.value.eventType = ' + event.value.eventType)
     // tslint:disable-next-line:radix
-    switch (parseInt(event.value.eventType)) {
-      case 1:
-        event.value.eventType = '5K';
-        break;
-      case 2:
-        event.value.eventType = '10K';
-        break;
-      default:
-        event.value.eventType = 'Step Count';
-    }
+    // switch (parseInt(event.value.eventType)) {
+    //   case 1:
+    //     event.value.eventType = '5K';
+    //     console.log('case = 5K');
+    //     break;
+    //   case 2:
+    //     event.value.eventType = '10K';
+    //     console.log('case = 10K');
+    //     break;
+    //   default:
+    //     console.log('case = Step Count');
+    //     event.value.eventType = 'Step Count';
+    // }
 
     console.log('event.value id = ' + event.value.id)
     console.log('event.value eventType = ' + event.value.eventType)
