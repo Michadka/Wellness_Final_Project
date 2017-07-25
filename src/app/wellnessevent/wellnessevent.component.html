@@ -22,16 +22,16 @@
                         <tr *ngFor="let e of events">
                             <td>
                                 <label class="custom-control">
-                                    <input type="checkbox" class="custom-control-input">
+                                    <input type="checkbox" name="events[]" class="custom-control-input" value={{e.id}}>
                                     <span class="custom-control-indicator"></span>
                                 </label>
                             </td>
                             <td>{{e.eventName}}</td>
-                            <td>{{e.type}}</td>
+                            <td>{{e.eventType}}</td>
                             <td>{{e.description}}</td>
                             <td>{{e.location}}</td>
-                            <td>{{e.startDate}}</td>
-                            <td>{{e.endDate}}</td>
+                            <td>{{e.startsOn}}</td>
+                            <td>{{e.endsOn}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -50,6 +50,9 @@
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#">Next</a>
+                        </li>
+                        <li>
+                            <button (click)="saveChangesToEventList('I need to pass the event ID from the checkboxes')" type="button" class="btn btn-primary">Apply</button>
                         </li>
                     </ul>
                 </nav>

@@ -25,12 +25,12 @@
               <input [(ngModel)]="wellnessEvent.eventName" #eventName="ngModel" class="form-control" type="text" name="eventName" multiple="" placeholder="Event Name" autofocus="">
           </div>
           <div class="form-group"><small>Start Date:</small>
-              <!--<input [(ngModel)]="wellnessEvent.startDate" #startDate="ngModel" class="form-control" type="datetime-local" name="startDate" required="">-->
-              <input [(ngModel)]="wellnessEvent.startDate" #startDate="ngModel" class="form-control" type="date-local" name="startDate" placeholder="YYYY-MM-DD" required="">              
+              <!--<input [(ngModel)]="wellnessEvent.startsOn" #startsOn="ngModel" class="form-control" type="datetime-local" name="startsOn" required="">-->
+              <input [(ngModel)]="wellnessEvent.startsOn" #startsOn="ngModel" class="form-control" type="date-local" name="startsOn" placeholder="YYYY-MM-DD" required="">              
           </div>
           <div class="form-group"><small>End Date:</small>
-              <!--<input [(ngModel)]="wellnessEvent.endDate" #endDate="ngModel" class="form-control" type="datetime-local" name="endDate" required="">-->
-              <input [(ngModel)]="wellnessEvent.endDate" #endDate="ngModel" class="form-control" type="date-local" name="endDate" placeholder="YYYY-MM-DD" required="">
+              <!--<input [(ngModel)]="wellnessEvent.endsOn" #endsOn="ngModel" class="form-control" type="datetime-local" name="endsOn" required="">-->
+              <input [(ngModel)]="wellnessEvent.endsOn" #endsOn="ngModel" class="form-control" type="date-local" name="endsOn" placeholder="YYYY-MM-DD" required="">
           </div>
           <div class="form-group"><small>Location: </small>
               <input [(ngModel)]="wellnessEvent.location" #location="ngModel" class="form-control" type="text" name="location" required="" placeholder="Location">

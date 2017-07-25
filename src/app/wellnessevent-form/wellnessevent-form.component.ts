@@ -28,8 +28,8 @@ export class WellnesseventFormComponent implements OnInit {
   formErrors = {
     // 'type': '',
     'eventName': '',
-    'startDate': '',
-    'endDate': '',
+    'startsOn': '',
+    'endsOn': '',
     'location': '',
     'description': ''
   };
@@ -42,11 +42,11 @@ export class WellnesseventFormComponent implements OnInit {
       'required': 'Event Name is required.',
       'minlength': 'Event Name must be at least 5 characters long.'
     },
-    'startDate': {
+    'startsOn': {
       'required': 'Start Date is required.'
       // add date format validator
     },
-    'endDate': {
+    'endsOn': {
       'required': 'End Date is required.'
       // add date format validator
     },
@@ -95,8 +95,8 @@ export class WellnesseventFormComponent implements OnInit {
     console.log('event.value id = ' + event.value.id);
     console.log('event.value eventType = ' + event.value.eventType);
     console.log('event.value eventName = ' + event.value.eventName);
-    console.log('event.value startDate = ' + event.value.startDate);
-    console.log('event.value endDate = ' + event.value.endDate);
+    console.log('event.value startsOn = ' + event.value.startsOn);
+    console.log('event.value endsOn = ' + event.value.endsOn);
     console.log('event.value location = ' + event.value.location);
     console.log('event.value description = ' + event.value.description);
     if (typeof event.value.id === 'number') {

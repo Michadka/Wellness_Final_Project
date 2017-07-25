@@ -31,7 +31,25 @@ export class WellnesseventComponent implements OnInit {
         });
   }
 
-  ngOnInit() {
+  addEvents() {
+    // this.dataService.updateRecords('addMemberToEvents')
+    //   .subscribe(
+    //     events => {
+    //       this.events = events
+    //       console.log(this.events)
+    //     });
+  }
+
+  saveChangesToEventList(idsToChange)
+  {
+  console.log("idsToChange")
+  console.log(idsToChange)
+  
+  //need status of join select box, eventID and memberID
+
+  } 
+
+ ngOnInit() {
     this.getEvents();
   }
 
