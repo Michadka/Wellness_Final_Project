@@ -24,3 +24,7 @@
 .window-title {
   padding-top: 14px;
 }
+
+.table td, th {
+   text-align: center;   
+}
