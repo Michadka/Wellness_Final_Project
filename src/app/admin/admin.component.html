@@ -19,9 +19,7 @@
                         <tr *ngFor="let u of users">
                             <td>
                                 <label class="custom-control">
-                                    <!--<input type="checkbox" class="custom-control-input">-->
                                     <input type="checkbox" (click)="updateUser(u.id, u.admin)" [(ngModel)]="u.admin" class="custom-control-input">
-                                <!--<input type="checkbox" [checked]="saveUsername" (change)="saveUsername = !saveUsername" />-->
                                     <span class="custom-control-indicator"></span>
                                 </label>
                             </td>

@@ -1,6 +1,6 @@
 <div class="window-title">
   <div class="container hero">
-    <h2 class="text-center">Add or Modify User...</h2>
+    <h2 class="text-center">{{title}}</h2>
   </div>
 </div>
 <div class="register-photo">
@@ -8,7 +8,7 @@
         <div class="image-holder" style="background-image:url(&quot;assets/img/jogging-women2.png&quot;);"></div>
         <form (ngSubmit)="saveMember(memberForm)" #memberForm="ngForm">
             <input [ngModel]="member?.id" ngModel #id="ngModel" type="hidden" name="id">
-            <h2 class="text-center" style="margin:0px 0px 30px;">Complete all fields...</h2>
+            <h2 class="text-center" style="margin:0px 0px 30px;">{{instructions}}</h2>
             <div class="form-group"><small>Email</small>
                 <input [ngModel]="member?.email"  #email="ngModel"  class="form-control" type="email" name="email" placeholder="Email">
             </div>
@@ -33,7 +33,7 @@
             <span *ngIf="formErrors.screenName" class="text-danger">
                 {{ formErrors.screenName }}
             </span>
-            <div class="form-group">
+            <div *ngIf="!user" class="form-group">
                 <div class="checkbox">
                     <label class="control-label">
                         <input type="checkbox">I agree to the <a href="about.html">License Terms </a></label>
@@ -44,7 +44,7 @@
                 <button  *ngIf="user" [disabled]="!memberForm.form.valid" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Submit</button>
                 <button class="btn btn-primary btn-block" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;">Cancel </button>
             </div>
-            <a href="login.html" class="already">You already have an account? Login here.</a>
+            <a *ngIf="!user" href="login.html" class="already">You already have an account? Login here.</a>
         </form>
     </div>
 </div>

@@ -19,10 +19,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let e of events">
+                        <tr *ngFor="let e of allEvents">
                             <td>
                                 <label class="custom-control">
-                                    <input type="checkbox" name="events[]" class="custom-control-input" value={{e.id}}>
+                                    <input type="checkbox" (click)="updateUser(e.id, e.members)" name="members" class="custom-control-input" [(ngModel)]="e.members">
+                                <!--<input type="checkbox" (click)="updateUser(u.id, u.admin)" [(ngModel)]="u.admin" class="custom-control-input">                                    -->
                                     <span class="custom-control-indicator"></span>
                                 </label>
                             </td>
@@ -36,7 +37,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer p-0">
+            <!--<div class="card-footer p-0">
                 <nav aria-label="...">
                     <ul class="pagination justify-content-end mt-3 mr-3">
                         <li class="page-item disabled">
@@ -56,6 +57,6 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div>-->
         </div>
     </main>
