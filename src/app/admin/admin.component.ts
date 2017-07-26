@@ -13,6 +13,7 @@ export class AdminComponent implements OnInit {
   adminStatus: boolean = JSON.parse(localStorage.getItem("adminStatus"));
   users: any[];
   user: object = {};
+  memberID: number;
   errorMessage: string;
   successMessage: string;
   adminOn: object = {
@@ -32,7 +33,12 @@ export class AdminComponent implements OnInit {
     this.dataService.getRecords('getAllMembers')
       .subscribe(
         events => {
-          this.users = events
+          this.users = events;
+          // for (let i = 0; this.users.length; i++) {
+          //   if (this.users[i].id === this.memberID) {
+          //     this.users
+          //   }
+          // }
           console.log(this.users)
         });
   }
@@ -60,6 +66,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.memberID = (JSON.parse(localStorage.getItem('currentUser'))).id;
     this.getUsers();
   }
 

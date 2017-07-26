@@ -16,10 +16,11 @@ export class WellnesseventFormComponent implements OnInit {
   wellnessEvent: object = {};
   errorMessage: string;
   successMessage: string;
-  eventNum = 0; // used to set the initial event type per received object
+  eventNum = 4; // used to set the initial event type per received object
   title = '';
 
   eventTypes = [
+    // new EventType(0, 'Please select an event type'),
     new EventType(1, '5K'),
     new EventType(2, '10K'),
     new EventType(3, 'Step Count')
@@ -97,6 +98,12 @@ export class WellnesseventFormComponent implements OnInit {
     console.log('event.value eventName = ' + event.value.eventName);
     console.log('event.value startsOn = ' + event.value.startsOn);
     console.log('event.value endsOn = ' + event.value.endsOn);
+    console.log('event.value streetAddress = ' + event.value.streetAddress);
+    console.log('event.value city = ' + event.value.city);
+    console.log('event.value state = ' + event.value.state);
+    console.log('event.value zipCode = ' + event.value.zipCode);
+    console.log('event.value latitude = ' + event.value.latitude);
+    console.log('event.value longitude = ' + event.value.longitude);
     console.log('event.value location = ' + event.value.location);
     console.log('event.value description = ' + event.value.description);
     if (typeof event.value.id === 'number') {

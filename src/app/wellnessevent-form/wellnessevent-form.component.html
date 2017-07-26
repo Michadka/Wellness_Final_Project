@@ -8,41 +8,92 @@
 <!--{{wellnessEvent | json}}-->
 <div class="register-photo">
   <div class="form-container">
-      <div class="image-holder" style="width:200px;background-image:url(&quot;assets/img/jogging-women-edited.png&quot;);"></div>
-      <form (ngSubmit)="saveEvent(eventForm)" #eventForm="ngForm">
-          <input [ngModel]="wellnessEvent.id" ngModel #id="ngModel" type="hidden" name="id">
-          <h2 class="text-center" style="margin:0px 0px 30px;">Please complete all fields...</h2>
-          <div class="form-group"><small>Event Type:</small>
-                <div>
-                <select class="form-control" [(ngModel)]="wellnessEvent.eventType" name="eventType">
+    <div class="image-holder" style="width:200px;background-image:url(&quot;assets/img/jogging-women-edited.png&quot;);"></div>
+    <form (ngSubmit)="saveEvent(eventForm)" #eventForm="ngForm">
+      <input [ngModel]="wellnessEvent.id" ngModel #id="ngModel" type="hidden" name="id">
+      <h2 class="text-center" style="margin:0px 0px 30px;">Please complete all fields...</h2>
+      <div class="row">
+        <div class="form-group col-xs-4"><small>Event Type:</small>
+          <!--<div>-->
+          <select class="form-control" [(ngModel)]="wellnessEvent.eventType" name="eventType">
                   <!--<option *ngFor="let et of eventTypes" value= {{et.num}}>{{et.name}}</option>  working except for preset on update-->
-                  <option *ngFor="let eventType of eventTypes" [ngClass]= "{'eventNum':eventType.num}">{{eventType.name}}</option>
-                </select>
-                </div>
-          </div>
-          <div class="form-group"><small>Event Name:</small>
-              <!--<input [(ngModel)]="wellnessEvent.eventName" ngModel #eventName="ngModel" class="form-control" type="text" name="eventName" multiple="" placeholder="Event Name" autofocus="">-->
-              <input [(ngModel)]="wellnessEvent.eventName" #eventName="ngModel" class="form-control" type="text" name="eventName" multiple="" placeholder="Event Name" autofocus="">
-          </div>
-          <div class="form-group"><small>Start Date:</small>
-              <!--<input [(ngModel)]="wellnessEvent.startsOn" #startsOn="ngModel" class="form-control" type="datetime-local" name="startsOn" required="">-->
-              <input [(ngModel)]="wellnessEvent.startsOn" #startsOn="ngModel" class="form-control" type="date-local" name="startsOn" placeholder="YYYY-MM-DD" required="">              
-          </div>
+                  <!--<option value="1"  disabled selected>Please select an event type</option>-->
+            <option *ngFor="let eventType of eventTypes" [ngClass]= "{'eventNum':eventType.num}">{{eventType.name}}</option>
+            <option disabled selected>Please select an event type</option>
+          </select>
+          <!--</div>-->
+        </div>
+        <div class="form-group col-xs-8"><small>Event Name:</small>
+          <input [(ngModel)]="wellnessEvent.eventName" #eventName="ngModel" class="form-control" type="text" name="eventName" multiple="" placeholder="Event Name" autofocus="">
+        </div>
+      </div>
+      <!--<div class="row">
+        <div class="form-group"><small>Event Name:</small>
+          <input [(ngModel)]="wellnessEvent.eventName" #eventName="ngModel" class="form-control" type="text" name="eventName" multiple=""
+            placeholder="Event Name" autofocus="">
+        </div>
+      </div>-->
+      <div class="row">
+        <div class="form-group col-xs-6"><small>Start Date:</small>
+          <!--<input [(ngModel)]="wellnessEvent.startsOn" #startsOn="ngModel" class="form-control" type="datetime-local" name="startsOn" required="">-->
+          <input [(ngModel)]="wellnessEvent.startsOn" #startsOn="ngModel" class="form-control" type="date-local" name="startsOn" placeholder="YYYY-MM-DD" required="">
+        </div>
+        <div class="form-group col-xs-6"><small>End Date:</small>
+          <!--<input [(ngModel)]="wellnessEvent.endsOn" #endsOn="ngModel" class="form-control" type="datetime-local" name="endsOn" required="">-->
+          <input [(ngModel)]="wellnessEvent.endsOn" #endsOn="ngModel" class="form-control" type="date-local" name="endsOn" placeholder="YYYY-MM-DD" required="">
+        </div>
+      </div>
+      <!--<div class="row">
           <div class="form-group"><small>End Date:</small>
-              <!--<input [(ngModel)]="wellnessEvent.endsOn" #endsOn="ngModel" class="form-control" type="datetime-local" name="endsOn" required="">-->
               <input [(ngModel)]="wellnessEvent.endsOn" #endsOn="ngModel" class="form-control" type="date-local" name="endsOn" placeholder="YYYY-MM-DD" required="">
           </div>
-          <div class="form-group"><small>Location: </small>
-             <input [(ngModel)]="wellnessEvent.location" #location="ngModel" class="form-control" type="text" name="location" required="" placeholder="Location">
+    </div>-->
+      <div class="row">
+        <div class="form-group col-xs-12"><small>Street Address: </small>
+          <input [(ngModel)]="wellnessEvent.streetAddress" #streetAddress="ngModel" class="form-control" type="text" name="streetAddress" required="" placeholder="# Street">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-xs-12"><small>City: </small>
+          <input [(ngModel)]="wellnessEvent.city" #city="ngModel" class="form-control" type="text" name="city" required="" placeholder="City">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-xs-6"><small>State: </small>
+          <input [(ngModel)]="wellnessEvent.state" #state="ngModel" class="form-control" type="text" name="state" required="" placeholder="SS">
+        </div>
+        <div class="form-group col-xs-6"><small>Zip Code: </small>
+          <input [(ngModel)]="wellnessEvent.zipCode" #zipCode="ngModel" class="form-control" type="text" name="zipCode" required="" placeholder="Zip Code">
+        </div>
+      </div>
+      <!--<div class="row">
+          <div class="form-group"><small>Zip Code: </small>
+              <input [(ngModel)]="wellnessEvent.street" #location="ngModel" class="form-control" type="text" name="location" required="" placeholder="Zip Code">
           </div>
-          <div class="form-group"><small> Description:</small>
-              <textarea [(ngModel)]="wellnessEvent.description" #description="ngModel" class="form-control" rows="4" wrap="hard" spellcheck="true" name="description" required="" placeholder="Description up to 120 characters" maxlength="120" minlength="2"></textarea>
-          </div>
-          <div class="form-group" style="height:110px;margin:25px 0px 15px;">
-              <!--<button [disabled]="!eventForm.form.valid" routerLink="wellnessevent/add" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Submit Event</button>-->
-              <button class="btn btn-primary btn-block" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;" >Submit Event</button>
-              <button class="btn btn-primary btn-block" [routerLink]="['/home']" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;" >Cancel</button>
-          </div>
-      </form>
-  </div>
+    </div>-->
+      <div class="row">
+        <div class="form-group col-xs-12"><small>Location Name (ex. Parson's Field, High School): </small>
+          <input [(ngModel)]="wellnessEvent.location" #location="ngModel" class="form-control" type="text" name="location" required="" placeholder="Location">
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-xs-12"><small> Description:</small>
+          <textarea [(ngModel)]="wellnessEvent.description" #description="ngModel" class="form-control" rows="4" wrap="hard" spellcheck="true"
+            name="description" required="" placeholder="Description up to 120 characters" maxlength="120" minlength="2"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <!--<div class="form-group" style="height:110px;margin:25px 0px 15px;">
+          <button class="btn btn-primary btn-block" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;">Submit Event</button>
+          <button class="btn btn-primary btn-block" [routerLink]="['/home']" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;">Cancel</button>-->
+        <div class="form-group col-xs-6">
+          <button class="btn btn-primary btn-block" type="submit" style="background-color:#269d9d;">Submit Event</button>
+        </div>
+        <div class="form-group col-xs-6">
+          <button class="btn btn-primary btn-block" [routerLink]="['/home']" type="submit" style="background-color:#269d9d;">Cancel</button>
+        </div>
+      </div>
+  <!--</div>-->
+  </form>
+</div>
 </div>
