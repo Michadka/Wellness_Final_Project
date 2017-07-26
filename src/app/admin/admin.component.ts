@@ -10,6 +10,7 @@ import {  ActivatedRoute,  Params, Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
+  adminStatus: boolean = JSON.parse(localStorage.getItem("adminStatus"));
   users: any[];
   user: object = {};
   errorMessage: string;
@@ -48,9 +49,13 @@ export class AdminComponent implements OnInit {
     }
 
     this.dataService.editRecord('member', adminObj, id)
-      .subscribe(
-        user => this.getUsers()
-      );
+    .subscribe(
+      user => this.getUsers()
+    );
+
+    console.log('this.adminStatus = ' + this.adminStatus);
+    console.log('JSON = ' + JSON.parse(localStorage.getItem("adminStatus")));
+    this.adminStatus = JSON.parse(localStorage.getItem("adminStatus"));
   }
 
   ngOnInit() {
