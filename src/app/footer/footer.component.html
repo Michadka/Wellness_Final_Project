@@ -8,12 +8,14 @@
           <p>A site where fitness tracker owners can join upcoming individual and team events,.</p>
         </div>
         <div class="col-md-3 col-md-pull-6 col-sm-4 item">
-          <h3>Site Navigartion</h3>
-          <ul>
-            <li routerLinkActive="active"><a routerLink="/member-form">Create User</a></li>
+          <h3 *ngIf="user || adminStatus" >Site Navigartion</h3>
+          <ul *ngIf="user">
+            <!--<li routerLinkActive="active"><a routerLink="/member-form">Create User</a></li>-->
             <li routerLinkActive="active"><a routerLink="/member-form">Modify User</a></li>
             <li routerLinkActive="active"><a routerLink="/wellnessevent">Join Event</a></li>
             <li routerLinkActive="active"><a routerLink="/wellnessevent">Modify Participation</a></li>
+          </ul>
+          <ul *ngIf="adminStatus">
             <!--The following two items are for admin and need to be toggled off/on per user ID-->
             <li routerLinkActive="active"><a routerLink="/wellnessevent-form">Create Event</a></li>
             <li routerLinkActive="active"><a routerLink="/admin-event">Modify Event</a></li>
@@ -22,15 +24,10 @@
         <div class="col-md-3 col-md-pull-6 col-sm-4 item">
           <h3>About</h3>
           <ul>
-            <li routerLinkActive="active"><a routerLink="/about">Wellness Events</a></li>
-            <li routerLinkActive="active"><a routerLink="/about">Site Creators</a></li>
-            <li routerLinkActive="active"><a routerLink="/about">Site Technologies/Tools</a></li>
-            <li routerLinkActive="active"><a routerLink="/about">Terms of Service</a></li>
-
-            <!--<li><a href="about.html#wellness-events">Wellness Events</a></li>
-                            <li><a href="about.html#site-creators">Site Creators</a></li>
-                            <li><a href="about.html#site-tech-tools">Site Technologies/Tools </a></li>
-                            <li><a href="about.html#terms-of-service">Terms of Service</a></li>-->
+            <li routerLinkActive="active"><a href="/about#wellness">Wellness Events</a></li>
+            <li routerLinkActive="active"><a href="/about#site-creators">Site Creators</a></li>
+            <li routerLinkActive="active"><a href="/about#site-tech-tools">Site Technologies/Tools</a></li>
+            <li routerLinkActive="active"><a href="/about#terms-of-service">Terms of Service</a></li>
           </ul>
         </div>
         <div class="col-md-12 col-sm-4 item social">

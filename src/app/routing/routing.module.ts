@@ -10,6 +10,7 @@ import { MemberFormComponent }   from '../member-form/member-form.component';
 import { WellnesseventComponent }   from '../wellnessevent/wellnessevent.component';
 import { WellnesseventFormComponent }   from '../wellnessevent-form/wellnessevent-form.component';
 import { AdminComponent }   from '../admin/admin.component';
+import { EventMapComponent }   from '../event-map/event-map.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const routes: Routes = [
   // { path: 'wellnessevent-form/:id',  component: WellnesseventFormComponent },
   { path: 'admin-event/wellnessevent/edit/:id', component: WellnesseventFormComponent }, // DAB
   { path: 'wellnessevent/add', component: WellnesseventFormComponent },
-  { path: 'admin',  component: AdminComponent }
+  { path: 'admin',  component: AdminComponent },
+  { path: 'eventmap',  component: EventMapComponent }
 ];
 
 @NgModule({

@@ -23,6 +23,9 @@ import { AboutComponent } from './about/about.component';
 import { AdminEventComponent } from './admin-event/admin-event.component';
 import { AdminUserComponent } from './admin-user/admin-user.component';
 import { FacebookComponent } from './facebook/facebook.component';
+import { AgmCoreModule } from '@agm/core';
+import { EventMapComponent } from './event-map/event-map.component';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,8 @@ import { FacebookComponent } from './facebook/facebook.component';
     AboutComponent,
     AdminEventComponent,
     AdminUserComponent,
-    FacebookComponent
+    FacebookComponent,
+    EventMapComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,10 @@ import { FacebookComponent } from './facebook/facebook.component';
     RouterModule,
     HttpModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDw_wrt-dI7J184tbMmfI6h6kJsAXxLN7w'
+    })
   ],
   entryComponents: [DeleteConfirmComponent],
   providers: [DataService],

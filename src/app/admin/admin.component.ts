@@ -50,7 +50,8 @@ export class AdminComponent implements OnInit {
 
     this.dataService.editRecord('member', adminObj, id)
     .subscribe(
-      user => this.getUsers()
+      user => {this.getUsers()
+      this.adminStatus = JSON.parse(localStorage.getItem("adminStatus"));}
     );
 
     console.log('this.adminStatus = ' + this.adminStatus);

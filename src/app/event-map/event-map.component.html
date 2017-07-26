@@ -1,0 +1,17 @@
+<h1 align="center">{{ title }}</h1>
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<agm-map [scrollwheel]="false" [latitude]="lat" [longitude]="lng" [zoom]="10"  >
+  <agm-marker 
+  *ngFor="let marker of markers" 
+  [title]="marker.title" 
+  [latitude]="marker.lat" 
+  [longitude]="marker.lng" 
+  [iconUrl]="marker.icon" >
+    <agm-info-window>
+      {{marker.name}}<br/>
+      {{marker.address}}<br/>{{marker.cityState}}
+    </agm-info-window>
+  </agm-marker>
+</agm-map>
