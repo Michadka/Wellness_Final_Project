@@ -4,6 +4,9 @@ import {  NgForm } from '@angular/forms';
 import {  ActivatedRoute,  Params } from '@angular/router';
 import {  Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
+import { Subject } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-wellnessevent',
@@ -19,6 +22,9 @@ export class WellnesseventComponent implements OnInit {
   successMessage: string;
   user: any = JSON.parse(sessionStorage.getItem('currentUser'));
 
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
@@ -31,7 +37,11 @@ export class WellnesseventComponent implements OnInit {
         events => {
           this.allEvents = events;
           this.getRegisteredEvents();
-          console.log('All events = ' + this.allEvents);
+          console.log(JSON.stringify(this.allEvents));
+          this.allEvents.sort(function(a, b){
+              return b.members.length - a.members.length;
+          });
+          this.dtTrigger.next();
         });
   }
 

@@ -34,11 +34,11 @@ export class AdminComponent implements OnInit {
       .subscribe(
         events => {
           this.users = events;
-          // for (let i = 0; this.users.length; i++) {
-          //   if (this.users[i].id === this.memberID) {
-          //     this.users
-          //   }
-          // }
+          for (let i = 0; this.users.length; i++) {
+            if (this.users[i].id === this.memberID) {
+              this.users = this.users.filter(item => item.id !==this.memberID)
+            }
+          }
           console.log(this.users)
         });
   }

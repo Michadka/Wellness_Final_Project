@@ -25,6 +25,7 @@ import { AdminUserComponent } from './admin-user/admin-user.component';
 import { FacebookComponent } from './facebook/facebook.component';
 import { AgmCoreModule } from '@agm/core';
 import { EventMapComponent } from './event-map/event-map.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -54,9 +55,10 @@ import { EventMapComponent } from './event-map/event-map.component';
     HttpModule,
     MaterialModule,
     BrowserAnimationsModule,
+    DataTablesModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDw_wrt-dI7J184tbMmfI6h6kJsAXxLN7w'
-    })
+    })  
   ],
   entryComponents: [DeleteConfirmComponent],
   providers: [DataService],
