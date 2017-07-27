@@ -27,7 +27,7 @@
                                     <button class="btn btn-primary" [routerLink]="['wellnessevent/edit/', e.id]"><em class="fa fa-pencil"></em></button>
                                     <!--<a class="btn btn-danger" data-toggle="confirmation" data-singleton="true"><em class="fa fa-trash"></em></a>-->
                                     <button (click)="deleteEvent(e.id)" class="btn btn-danger" data-toggle="confirmation" data-singleton="true" onclick="this.blur()" ><em class="fa fa-trash"></em></button>
-                                    <button class="btn btn-info"><em class="fa fa-users"></em></button>
+                                    <button class="btn btn-info"[routerLink]="['adminuser/display/', e.id, e.eventName]"><em class="fa fa-users"></em></button>
                                 </label>
                             </td>
                             <td>{{e.eventName}}</td>

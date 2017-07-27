@@ -19,7 +19,6 @@ const routes: Routes = [
   { path: 'wellnessevent-form',  component: WellnesseventFormComponent }, // DAB
   { path: 'signin',  component: SigninComponent }, // DAB
   { path: 'admin-event',  component: AdminEventComponent }, // DAB
-  { path: 'admin-user',  component: AdminUserComponent }, // DAB 
   { path: 'home',  component: HomeComponent },
   { path: 'member',  component: MemberComponent },
   { path: 'member/edit', component: MemberFormComponent },
@@ -27,6 +26,7 @@ const routes: Routes = [
   { path: 'wellnessevent',  component: WellnesseventComponent },
   // { path: 'wellnessevent-form/:id',  component: WellnesseventFormComponent },
   { path: 'admin-event/wellnessevent/edit/:id', component: WellnesseventFormComponent }, // DAB
+  { path: 'admin-event/adminuser/display/:id/:name', component: AdminUserComponent }, // DAB
   { path: 'wellnessevent/add', component: WellnesseventFormComponent },
   { path: 'admin',  component: AdminComponent },
   { path: 'eventmap',  component: EventMapComponent },
