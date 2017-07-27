@@ -40,7 +40,6 @@ export class DataService {
     }
 
     getRecord(endpoint: string, id): Observable<object> {
-
         console.log("data.service - getRecord()")
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
         return this.http.get(apiUrl)

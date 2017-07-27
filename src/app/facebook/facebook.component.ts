@@ -19,8 +19,8 @@ export class FacebookComponent implements OnInit {
   member: any;
   errorMessage: string;
   successMessage: string;
-  user: object = JSON.parse(localStorage.getItem("currentUser"));
-  adminStatus: boolean = JSON.parse(localStorage.getItem("adminStatus"));
+  user: object = JSON.parse(sessionStorage.getItem("currentUser"));
+  adminStatus: boolean = JSON.parse(sessionStorage.getItem("adminStatus"));
 
   memberForm: NgForm;
   @ViewChild('memberForm') currentForm: NgForm;
@@ -59,8 +59,8 @@ export class FacebookComponent implements OnInit {
             member => {
               this.member = member;
               this.successMessage = "Record added successfully",
-              localStorage.setItem("currentUser", JSON.stringify(this.member))
-              localStorage.setItem("adminStatus", JSON.stringify(this.member.admin))
+              sessionStorage.setItem("currentUser", JSON.stringify(this.member))
+              sessionStorage.setItem("adminStatus", JSON.stringify(this.member.admin))
               console.log(JSON.stringify(this.member.admin))
           },
             error =>  this.errorMessage = <any>error)

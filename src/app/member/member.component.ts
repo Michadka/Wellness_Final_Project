@@ -8,15 +8,15 @@ import { Component, OnInit, Input, Pipe, PipeTransform, Output, EventEmitter  } 
 
 export class MemberComponent implements OnInit {
 
-user: object = JSON.parse(localStorage.getItem("currentUser"));
-adminStatus: object = JSON.parse(localStorage.getItem("adminStatus"));
+user: object = JSON.parse(sessionStorage.getItem("currentUser"));
+adminStatus: object = JSON.parse(sessionStorage.getItem("adminStatus"));
 
 ngOnInit(){}
 
 
   ngAfterContentChecked(){
-    this.user = JSON.parse(localStorage.getItem("currentUser"));
-    this.adminStatus = JSON.parse(localStorage.getItem("adminStatus"));
+    this.user = JSON.parse(sessionStorage.getItem("currentUser"));
+    this.adminStatus = JSON.parse(sessionStorage.getItem("adminStatus"));
   }
 
   

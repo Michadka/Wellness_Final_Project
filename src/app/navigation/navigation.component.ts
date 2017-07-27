@@ -9,8 +9,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 export class NavigationComponent implements OnInit {
 
-  user: object = JSON.parse(localStorage.getItem("currentUser"));
-  adminStatus: boolean = JSON.parse(localStorage.getItem("adminStatus"));
+  user: object = JSON.parse(sessionStorage.getItem("currentUser"));
+  adminStatus: boolean = JSON.parse(sessionStorage.getItem("adminStatus"));
 
   constructor(
      private router: Router)
@@ -18,19 +18,19 @@ export class NavigationComponent implements OnInit {
 
   ngOnInit() {
     console.log("before adminStatus");
-    console.log(localStorage.getItem("adminStatus"));
+    console.log(sessionStorage.getItem("adminStatus"));
     console.log(this.adminStatus);
     console.log("after adminStatus");
   }
 
   ngAfterContentChecked(){
-    this.user = JSON.parse(localStorage.getItem("currentUser"));
-    this.adminStatus = JSON.parse(localStorage.getItem("adminStatus"));
+    this.user = JSON.parse(sessionStorage.getItem("currentUser"));
+    this.adminStatus = JSON.parse(sessionStorage.getItem("adminStatus"));
   }
 
   logOutUser(){
-    localStorage.removeItem("currentUser");
-    localStorage.removeItem("adminStatus");
+    sessionStorage.removeItem("currentUser");
+    sessionStorage.removeItem("adminStatus");
   }
 
 }

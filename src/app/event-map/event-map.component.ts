@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AgmCoreModule } from '@agm/core';
 import {  DataService } from '../data.service';
+import { ActivatedRoute, Params } from '@angular/router';
 // import './pins-bicyle.jpg';
 
 @Component({
@@ -8,71 +9,49 @@ import {  DataService } from '../data.service';
   templateUrl: './event-map.component.html',
   styleUrls: ['./event-map.component.css']
 })
+
 export class EventMapComponent implements OnInit {
 
   title: string = 'Events Near You';
   lat: number = 39.9784;
   lng: number = -86.1180;
-  myEvent: object = {};
+  myEvent: any = {};
+  markers: any = [];
 
-  // displayLocations(){
-  //    for each location in locations
-  //       let lat: number = latitude;
-  //       let lng: number = longitude;
-  //       let title: string = location;
-  //       let address: string = streetAddress;
-  //       let cityStateZip: string = city + state + zip
-  //       let city: string = city;
-  //       let state: string = state;
-  //       let zip: string = zipCode;
-  // }
-
-  getEvent(id) {
-    this.dataService.getRecord('eventbyid', id)
-      .subscribe(
-        event => {
-          this.myEvent = event;
-          console.log('All events = ' + this.myEvent);
-        });
+  getEvent(){
+    this.route.params
+      .switchMap((params: Params) => this.dataService.getRecord("eventbyid", +params['id']))
+      .subscribe(myEvent => {
+        this.myEvent = myEvent
+        this.lat = this.myEvent.latitude;
+        this.lng = this.myEvent.longitude;
+        this.markers = [
+          {
+            lat: this.myEvent.latitude,
+            lng: this.myEvent.longitude,
+            name: this.myEvent.eventName,
+            address: this.myEvent.streetAddress,
+            cityStateZip: this.myEvent.city + ", " +  this.myEvent.state + " " + this.myEvent.zipCode,
+            title: this.myEvent.description,
+            //icon: "http://maps.google.com/mapfiles/ms/micons/hiker.png"
+            icon: "https://maps.google.com/mapfiles/ms/icons/sportvenue.png"
+            //icon: "https://maps.google.com/mapfiles/ms/icons/purple-pushpin.png"
+          }
+        ]
+      });
   }
 
-  markers: object[] = [
-    {
-      lat: 39.9784,
-      lng: -86.1180,
-      address: "123-45 126th Street",
-      cityStateZip: "Carmel, IN 46032",
-      title: "Carmel-title",
-      icon: "http://maps.google.com/mapfiles/ms/micons/hiker.png"
-    },
-    {
-      lat: 39.7684,
-      lng: -86.1158,
-      name: "Downtown-name",
-      title: "Downtown-title",
-      icon: "http://maps.google.com/mapfiles/ms/micons/cycling.png"
-    },
-    {
-      lat: 39.9568,
-      lng: -86.0134,
-      name: "Fishers-name",
-      title: "Fishers-title",
-      icon: 'http://maps.google.com/mapfiles/ms/micons/wheel_chair_accessible.png'
-    },
-    {
-      lat: 40.045684,
-      lng: -86.0086,
-      name: "Nobelsville-name",
-      title: "Nobelsville-title",
-      icon: "http://maps.google.com/mapfiles/ms/micons/rangerstation.png"
-    }
-  ]
-
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private route: ActivatedRoute
+    //private location: Location
   ) { }
 
   ngOnInit() {
+      this.route.params
+      .subscribe((params: Params) => {
+        //console.log((+params['id']))
+        (+params['id']) ? this.getEvent() : null;
+      });
   }
-
 }

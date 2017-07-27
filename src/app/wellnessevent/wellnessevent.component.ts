@@ -17,7 +17,7 @@ export class WellnesseventComponent implements OnInit {
   event: object;
   errorMessage: string;
   successMessage: string;
-  user: any = JSON.parse(localStorage.getItem('currentUser'));
+  user: any = JSON.parse(sessionStorage.getItem('currentUser'));
 
   constructor(
     private dataService: DataService,
@@ -98,7 +98,7 @@ export class WellnesseventComponent implements OnInit {
   }
 
  ngOnInit() {
-  // this.userId = localStorage:get();
+  // this.userId = sessionStorage:get();
    this.getEvents();
   //  this.getRegisteredEvents();
    console.log('User = ' + this.user.id);

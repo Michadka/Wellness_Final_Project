@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  user: object = JSON.parse(localStorage.getItem("currentUser"));
-  adminStatus: boolean = JSON.parse(localStorage.getItem("adminStatus"));
+  user: object = JSON.parse(sessionStorage.getItem("currentUser"));
+  adminStatus: boolean = JSON.parse(sessionStorage.getItem("adminStatus"));
 
   constructor() { }
 
@@ -16,7 +16,7 @@ export class FooterComponent implements OnInit {
   }
 
   ngAfterContentChecked(){
-    this.user = JSON.parse(localStorage.getItem("currentUser"));
-    this.adminStatus = JSON.parse(localStorage.getItem("adminStatus"));
+    this.user = JSON.parse(sessionStorage.getItem("currentUser"));
+    this.adminStatus = JSON.parse(sessionStorage.getItem("adminStatus"));
   }
 }

@@ -17,8 +17,8 @@ export class MemberFormComponent implements OnInit {
   member: any;
   errorMessage: string;
   successMessage: string;
-  user: object = JSON.parse(localStorage.getItem('currentUser'));
-  adminStatus: boolean = JSON.parse(localStorage.getItem('adminStatus'));
+  user: object = JSON.parse(sessionStorage.getItem('currentUser'));
+  adminStatus: boolean = JSON.parse(sessionStorage.getItem('adminStatus'));
   title = ''; // page title
   instructions = ''; // dialog instruction
 
@@ -34,7 +34,9 @@ export class MemberFormComponent implements OnInit {
 
   saveMember(member: NgForm) {
     // member.admin is currently undefined, so setting it to the current value
-    member.value.admin = this.member.admin;
+    if (this.member !== null) {
+        member.value.admin = this.member.admin;
+      }
     console.log('member.value I = ' + member.value.id)
     console.log('member.value E = ' + member.value.email)
     console.log('member.value P = ' + member.value.password)
@@ -52,12 +54,15 @@ export class MemberFormComponent implements OnInit {
             member => {
               this.member = member;
               this.successMessage = 'Record added successfully',
-              localStorage.setItem('currentUser', JSON.stringify(this.member))
-              localStorage.setItem('adminStatus', JSON.stringify(this.member.admin))
-              console.log(JSON.stringify(this.member.admin))
+              sessionStorage.setItem('currentUser', JSON.stringify(this.member));
+              sessionStorage.setItem('adminStatus', JSON.stringify(this.member.admin));
+              this.router.navigate(['/home']);
+              console.log("A")
+              console.log(JSON.stringify(this.member))
+              console.log(JSON.parse(sessionStorage.getItem("currentUser")))
+              console.log("B")
           },
             error =>  this.errorMessage = <any>error)
-            this.router.navigate(['/home']),
             this.member = {};
     }
   }
@@ -71,7 +76,7 @@ export class MemberFormComponent implements OnInit {
 
   ngOnInit() {
       console.log('member-form onInit');
-      this.member = JSON.parse(localStorage.getItem('currentUser'));
+      this.member = JSON.parse(sessionStorage.getItem('currentUser'));
       if (this.member !== null && typeof this.member.id === 'number') {
         this.title = 'Modify User...';
         this.instructions = 'Change desired values...';

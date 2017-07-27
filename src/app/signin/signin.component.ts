@@ -32,15 +32,15 @@ export class SigninComponent implements OnInit {
   }
 
   getMember(record){
-    localStorage.removeItem("currentUser");
+    sessionStorage.removeItem("currentUser");
     console.log("signin.ts - getMember()")
     this.dataService.getLoginRecord("open/login/", record.value)
     .subscribe(
       member => {
         this.member = member;
       console.log(member)
-      localStorage.setItem("currentUser", JSON.stringify(this.member))
-      localStorage.setItem("adminStatus", JSON.stringify(this.member.admin))
+      sessionStorage.setItem("currentUser", JSON.stringify(this.member))
+      sessionStorage.setItem("adminStatus", JSON.stringify(this.member.admin))
       this.router.navigate(['/home'])
     },
     error => this.loginError = "invalid login"

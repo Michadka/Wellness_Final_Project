@@ -29,7 +29,8 @@ const routes: Routes = [
   { path: 'admin-event/wellnessevent/edit/:id', component: WellnesseventFormComponent }, // DAB
   { path: 'wellnessevent/add', component: WellnesseventFormComponent },
   { path: 'admin',  component: AdminComponent },
-  { path: 'eventmap',  component: EventMapComponent }
+  { path: 'eventmap',  component: EventMapComponent },
+  { path: 'eventmap/:id',  component: EventMapComponent }
 ];
 
 @NgModule({
