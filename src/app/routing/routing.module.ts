@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent }   from '../about/about.component'; // DAB
 import { SigninComponent }   from '../signin/signin.component'; // DAB
 import { AdminEventComponent } from '../admin-event/admin-event.component'; // DAB
+import { AdminEventStatusComponent } from '../admin-event-status/admin-event-status.component'; // DAB
 import { AdminUserComponent } from '../admin-user/admin-user.component'; // DAB
 import { HomeComponent }   from '../home/home.component';
 import { MemberComponent }   from '../member/member.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'wellnessevent-form',  component: WellnesseventFormComponent }, // DAB
   { path: 'signin',  component: SigninComponent }, // DAB
   { path: 'admin-event',  component: AdminEventComponent }, // DAB
+  { path: 'admin-event-status',  component: AdminEventStatusComponent }, // DAB
   { path: 'home',  component: HomeComponent },
   { path: 'member',  component: MemberComponent },
   { path: 'member/edit', component: MemberFormComponent },
@@ -28,6 +30,7 @@ const routes: Routes = [
   // { path: 'wellnessevent-form/:id',  component: WellnesseventFormComponent },
   { path: 'admin-event/wellnessevent/edit/:id', component: WellnesseventFormComponent }, // DAB
   { path: 'admin-event/adminuser/display/:id/:name', component: AdminUserComponent }, // DAB
+  { path: 'admin-event-status/adminuser/display/:id/:name', component: AdminUserComponent }, // DAB
   { path: 'wellnessevent/add', component: WellnesseventFormComponent },
   { path: 'admin',  component: AdminComponent },
   { path: 'eventmap',  component: EventMapComponent },
