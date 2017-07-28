@@ -2,15 +2,24 @@
   <div class="features-clean">
     <div class="container">
         <div class="intro">
-            <h2 class="text-center">Welcome {{user.screenName | uppercase}}, Let's Get Moving...</h2>
+            <h2 class="text-center name">Welcome {{user.screenName | uppercase}}, Let's Get Moving...</h2>
             <!--<p class="text-center">Select your options below... </p>-->
         </div>
         <div class="row features">
-            <!--<div class="col-md-6 col-sm-12 item"><i class="icon ion-ios-contact-outline icon"></i>
-                <h3 class="name"><a href="create-user.html">Create User </a></h3>
-                <p class="description">Are you new to this site? Create an account and get started Wellness Events.</p>
-            </div>-->
-            <div class="col-md-6 col-sm-12 item">
+            <div class="col-md-4 col-sm-12 item">
+                <h3 class="name"><a href="create-user.html" > Your Heart Rate </a></h3>
+                <img src="assets/img/heart.jpg" style="width:304px;height:228px;" />
+            </div>
+            <div class="col-md-4 col-sm-12 item">
+                <h3 class="name"><a href="create-user.html" > Your step count </a></h3>
+                <img src="assets/img/health.jpg" style="width:304px;height:228px;" />
+            </div>
+            <div class="col-md-4 col-sm-12 item">
+                <h3 class="name"><a href="create-user.html" > Your testosterone level </a></h3>
+                <img src="assets/img/gauge.png" style="width:304px;height:228px;" />
+            </div>
+            </div><br><br><br>
+            <!--<div class="col-md-6 col-sm-12 item">
                 <h3 class="name"><a routerLink="/member-form">Modify User </a><i class="icon ion-ios-contact icon"></i></h3>
                 <p class="description">Need to change your email, password, or screen name?</p>
             </div>
@@ -18,13 +27,13 @@
                 <h3 class="name"><a routerLink="/wellnessevent">Join Event/Modify Participation </a><i class="icon ion-android-walk icon"></i></h3>
                 <p class="description">Are you looking to join an event? See what's avalable in your area.</p>
             </div>
-            </div><br><br><br>
-            <div *ngIf="adminStatus">
-                <h2 class="text-center">I see you are an administrator.  Here are some other things you can do...</h2>   
+            </div><br><br><br>-->
+            <div *ngIf="adminStatus" class="row features">
+                <h2 class="text-center name">I see you are an administrator.  Here are some other things you can do...</h2>   
             </div>
             <div *ngIf="adminStatus"  class="row features">
                 <div class="col-md-6 col-sm-12 item">
-                    <h3 class="name"><a routerLink="/wellnessevent-form">Create Event </a><i class="icon ion-ios-people icon"></i></h3>
+                    <h3 class="name"><a routerLink="/wellnessevent-form">Create2 Event </a><i class="icon ion-ios-people icon"></i></h3>
                     <p class="description">Would you like to create a new event?</p>
                 </div>
                 <div class="col-md-6 col-sm-12 item">

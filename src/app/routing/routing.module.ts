@@ -11,6 +11,7 @@ import { WellnesseventComponent }   from '../wellnessevent/wellnessevent.compone
 import { WellnesseventFormComponent }   from '../wellnessevent-form/wellnessevent-form.component';
 import { AdminComponent }   from '../admin/admin.component';
 import { EventMapComponent }   from '../event-map/event-map.component';
+import { FacebookComponent }   from '../facebook/facebook.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -30,7 +31,8 @@ const routes: Routes = [
   { path: 'wellnessevent/add', component: WellnesseventFormComponent },
   { path: 'admin',  component: AdminComponent },
   { path: 'eventmap',  component: EventMapComponent },
-  { path: 'eventmap/:id',  component: EventMapComponent }
+  { path: 'eventmap/:id',  component: EventMapComponent },
+  { path: 'facebook',  component: FacebookComponent }
 ];
 
 @NgModule({

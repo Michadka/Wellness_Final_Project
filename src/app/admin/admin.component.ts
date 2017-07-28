@@ -2,6 +2,9 @@ import { Component, OnInit, Input,  ViewChild } from '@angular/core';
 import {  DataService } from '../data.service';
 import {  NgForm } from '@angular/forms';
 import {  ActivatedRoute,  Params, Router } from '@angular/router';
+import { Subject } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-admin',
@@ -11,6 +14,8 @@ import {  ActivatedRoute,  Params, Router } from '@angular/router';
 export class AdminComponent implements OnInit {
 
   adminStatus: boolean = JSON.parse(sessionStorage.getItem("adminStatus"));
+  // dtOptions: DataTables.Settings;
+  dtTrigger: Subject<any> = new Subject();
   users: any[];
   user: object = {};
   memberID: number;
@@ -36,9 +41,12 @@ export class AdminComponent implements OnInit {
           this.users = events;
           for (let i = 0; this.users.length; i++) {
             if (this.users[i].id === this.memberID) {
-              this.users = this.users.filter(item => item.id !==this.memberID)
+              // this.users = this.users.filter(item => item.id !==this.memberID)
+              this.users.splice(i, 1)
+              break;
             }
           }
+          this.dtTrigger.next();
           console.log(this.users)
         });
   }

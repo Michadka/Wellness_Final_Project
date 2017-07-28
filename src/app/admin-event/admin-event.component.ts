@@ -6,6 +6,9 @@ import {  Location } from '@angular/common';
 import {  MdDialog, MdDialogRef } from '@angular/material';
 import 'rxjs/add/operator/switchMap';
 import {  DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component'
+import { Subject } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import { DataTablesModule } from 'angular-datatables';
 
 @Component({
   selector: 'app-admin-event',
@@ -18,7 +21,10 @@ export class AdminEventComponent implements OnInit {
   event: object;
   errorMessage: string;
   successMessage: string;
+  dtOptions: any = {};
+  dtTrigger: Subject<any> = new Subject();
 
+ 
   constructor(
     private dataService: DataService,
     private route: ActivatedRoute,
@@ -32,11 +38,24 @@ export class AdminEventComponent implements OnInit {
         events => {
           this.events = events
           console.log(this.events)
+          this.dtTrigger.next();
         });
+     
+      
   }
 
   ngOnInit() {
     this.getEvents();
+    this.dtOptions = {
+     dom: 'Bfrtip',
+      // Configure the buttons
+      buttons: [
+       // 'columnsToggle',
+        'colvis',
+        'copy',
+        'print'
+      ]
+   }
   }
 
   deleteEvent(id: number) {

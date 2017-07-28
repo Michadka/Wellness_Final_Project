@@ -22,7 +22,7 @@ export class WellnesseventComponent implements OnInit {
   successMessage: string;
   user: any = JSON.parse(sessionStorage.getItem('currentUser'));
 
-  dtOptions: DataTables.Settings = {};
+  dtOptions: any;
   dtTrigger: Subject<any> = new Subject();
 
   constructor(
@@ -112,6 +112,17 @@ export class WellnesseventComponent implements OnInit {
    this.getEvents();
   //  this.getRegisteredEvents();
    console.log('User = ' + this.user.id);
+  //  this.dtOptions = {
+  //    dom: 'Bfrtip',
+  //     // Configure the buttons
+  //     buttons: [
+  //      // 'columnsToggle',
+  //       'colvis',
+  //       'copy',
+  //       'print'
+  //     ]
+  //  }
+    
   }
 
 }

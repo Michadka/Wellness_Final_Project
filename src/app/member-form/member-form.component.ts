@@ -48,6 +48,17 @@ export class MemberFormComponent implements OnInit {
           .subscribe(
             member => this.successMessage = 'Record updated successfully',
             error =>  this.errorMessage = <any>error);
+            sessionStorage.setItem('currentUser', JSON.stringify(this.member));
+    console.log('member.value I2 = ' + member.value.id)
+    console.log('member.value E2 = ' + member.value.email)
+    console.log('member.value P2 = ' + member.value.password)
+    console.log('member.value S2 = ' + member.value.screenName)
+    console.log('member.value A2 = ' + member.value.admin)
+    console.log("session current use = " + JSON.parse(sessionStorage.getItem("currentUser[screenName]")))
+    //console.log({this.currentUser})
+    // console.log('member.value P2 = ' + currentUser.password)
+    // console.log('member.value S2 = ' + currentUser.screenName)
+    // console.log('member.value A2 = ' + currentUser.admin)
     }else {
       this.dataService.addRecord('member', member.value)
           .subscribe(
