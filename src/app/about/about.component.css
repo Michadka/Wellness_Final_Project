@@ -296,3 +296,7 @@
 .articles .item a {
   flex-grow: 1;
 }
+
+.img-circle {
+  height: 120px;
+}
