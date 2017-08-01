@@ -7,21 +7,32 @@ import {  Location } from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import {  DeleteConfirmComponent } from '../delete-confirm/delete-confirm.component';
 
+
 @Component({
   selector: 'app-admin-event-status',
   templateUrl: './admin-event-status.component.html',
   styleUrls: ['./admin-event-status.component.css']
 })
 export class AdminEventStatusComponent implements OnInit {
-
   events: any[];
+  dataEvents: any[];
   event: object;
   errorMessage: string;
   successMessage: string;
   data: any[];   // step count data
   layout: any[]; // step count layout
+  memberIDs: string[];
+  public barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  public barChartType: string = 'bar';
+  public barChartLegend: boolean = true;
+  barChartLabels: string[];
+  barChartData: any[];
+  localBarChartData: any[];
 
-  stepCount: any = [
+  stepsOverTime: any = [
    {
        'wellnessEventID': 4,
        'memberID': 1,
@@ -164,51 +175,142 @@ export class AdminEventStatusComponent implements OnInit {
        'wellnessEventID': 4,
        'memberID': 3,
        'dayOfSteps': '2017-06-27',
-       'stepCount': 17500
+       'stepCount': 1750
    }
 ]
 
-  public barChartOptions:any = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
-  public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  public barChartType: string = 'bar';
-  public barChartLegend: boolean = true;
+  heartRateOverTime: any = [
+   {
+       'eventID': 2,
+       'memberID': 1,
+       'statTimestamp': 1497970860000,
+       'stat': 65,
+       'formattedTime': '01-20-02017 11:01:00',
+       'formattedMinute': '00'
+   },
+   {
+       'eventID': 2,
+       'memberID': 2,
+       'statTimestamp': 1497970860000,
+       'stat': 72,
+       'formattedTime': '01-20-02017 11:01:00',
+       'formattedMinute': '00'
+   },
+   {
+       'eventID': 2,
+       'memberID': 3,
+       'statTimestamp': 1497970860000,
+       'stat': 69,
+       'formattedTime': '01-20-02017 11:01:00',
+       'formattedMinute': '00'
+   },
+   {
+       'eventID': 2,
+       'memberID': 1,
+       'statTimestamp': 1497970920000,
+       'stat': 85,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '01'
+   },
+   {
+       'eventID': 2,
+       'memberID': 2,
+       'statTimestamp': 1497970920000,
+       'stat': 92,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '01'
+   },
+   {
+       'eventID': 2,
+       'memberID': 3,
+       'statTimestamp': 1497970920000,
+       'stat': 105,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '01'
+   },
 
-  public barChartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-  ];
+
+   {
+       'eventID': 2,
+       'memberID': 1,
+       'statTimestamp': 1497970920000,
+       'stat': 89,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '02'
+   },
+   {
+       'eventID': 2,
+       'memberID': 2,
+       'statTimestamp': 1497970920000,
+       'stat': 95,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '02'
+   },
+   {
+       'eventID': 2,
+       'memberID': 3,
+       'statTimestamp': 1497970920000,
+       'stat': 108,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '02'
+   },
+   {
+       'eventID': 2,
+       'memberID': 1,
+       'statTimestamp': 1497970920000,
+       'stat': 93,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '03'
+   },
+   {
+       'eventID': 2,
+       'memberID': 2,
+       'statTimestamp': 1497970920000,
+       'stat': 99,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '03'
+   },
+   {
+       'eventID': 2,
+       'memberID': 3,
+       'statTimestamp': 1497970920000,
+       'stat': 110,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '03'
+   },
+   {
+       'eventID': 2,
+       'memberID': 1,
+       'statTimestamp': 1497970920000,
+       'stat': 96,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '04'
+   },
+   {
+       'eventID': 2,
+       'memberID': 2,
+       'statTimestamp': 1497970920000,
+       'stat': 104,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '04'
+   },
+   {
+       'eventID': 2,
+       'memberID': 3,
+       'statTimestamp': 1497970920000,
+       'stat': 112,
+       'formattedTime': '02-20-02017 11:02:00',
+       'formattedMinute': '04'
+   }
+]
 
   // events
-  public chartClicked(e:any):void {
+  public chartClicked(e: any): void {
     console.log(e);
   }
 
-  public chartHovered(e:any):void {
+  public chartHovered(e: any): void {
     console.log(e);
-  }
-
-  public randomize():void {
-    // Only Change 3 values
-    let data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-    let clone = JSON.parse(JSON.stringify(this.barChartData));
-    clone[0].data = data;
-    this.barChartData = clone;
-    /**
-     * (My guess), for Angular to recognize the change in the dataset
-     * it has to change the dataset variable directly,
-     * so one way around it, is to clone the data, change it and then
-     * assign it;
-     */
   }
 
   constructor(
@@ -229,21 +331,119 @@ export class AdminEventStatusComponent implements OnInit {
 
   ngOnInit() {
     this.getEvents();
+    this.barChartLabels = [];
+    this.barChartData = [];
+    this.memberIDs = [];
+    this.displayEvent(1, 'Step Count');
+    // this.displayEvent(5, '10K');
   }
 
   displayEvent(id: number, type: string) {
+    // getAllStepsOverTimeRowsByEvent
+
     console.log('Display Stats Event # = ' + id);
+    this.barChartLabels = [];
+    this.localBarChartData = [];
+    this.memberIDs = [];
     if (type === 'Step Count') {
       console.log('Event = Step Count');
-        // data: any[];   // step count data
-        // layout: any[]; // step count layout
-// - loop over stepCount and populate data
 
+      this.dataService.getRecords('activity/getAllStepsOverTimeRowsByEvent/' + id)
+      .subscribe(
+        dataEvents => {
+          this.dataEvents = dataEvents;
+          console.log('dataEvents = ' + this.dataEvents);
+          // put all of the code below within this if block --> "HERE"
+            for ( let i = 0; i < this.dataEvents.length; i++ ) {
+                // console.log('chart labels Array contains --> ' + this.barChartLabels );
+                // console.log('memberIDs Array contains --> ' + this.memberIDs );
+                // console.log('Index = ' + this.barChartLabels.indexOf(String(this.dataEvents[i].dayOfSteps)));
 
+                // Is this a new date/day, then add the date/day to the barChartLabels array?
+                if ( this.barChartLabels.indexOf(String(this.dataEvents[i].dayOfSteps)) === -1 ) {
+                    this.barChartLabels.push(String(this.dataEvents[i].dayOfSteps));
+                    // console.log('Adding the following date --> ' + this.dataEvents[i].dayOfSteps);
+                }
+                // else {
+                    // console.log('This is already included --> ' + this.dataEvents[i].dayOfSteps);
+                // }
+
+                // Is this a new member ID, then create a new data object
+                if ( this.memberIDs.indexOf(String(this.dataEvents[i].memberID)) === -1 ) {
+                    this.memberIDs.push(String(this.dataEvents[i].memberID));
+                    this.localBarChartData[i] = {}; // create a new object for this memberID
+                    this.localBarChartData[i].label = this.dataEvents[i].memberID;  // assign the member ID
+                    this.localBarChartData[i].data = []; // create new array for step counts
+                    // console.log('Adding the following member ID --> ' + this.dataEvents[i].memberID);
+                }
+                // else {
+                    // console.log('This member ID is already included --> ' + this.dataEvents[i].memberID);
+                // }
+
+                // determine what the correct data array index for the current user
+                for (let j = 0; j < this.localBarChartData.length; j++) {
+                    if (this.localBarChartData[j].label === this.dataEvents[i].memberID) {
+                        // console.log('steps = ' + this.dataEvents[i].stepCount + ' for memberID ' + this.localBarChartData[j].label);
+                        this.localBarChartData[j].data.push(this.dataEvents[i].stepCount);
+                        break; // got the correct array index, so no need to continue
+                    }
+                } // - end of data array for loop
+            } // end of dataEvents data consimption for loop
+
+            // now assign the bar chart data so the chart will display
+            this.barChartData = this.localBarChartData;
+        });
     }else {
       console.log('Event = 5K or 10K');
-    }
-  }
+      this.dataService.getRecords('activity/getAllHeartrateRowsByEvent/' + id)
+      .subscribe(
+        dataEvents => {
+          this.dataEvents = dataEvents;
+          // put all of the code below within this else block --> "HERE"
+            for ( let i = 0; i < this.dataEvents.length; i++ ) {
+                // console.log('#######################################');
+                // console.log('chart labels Array contains --> ' + this.barChartLabels );
+                // console.log('memberIDs Array contains --> ' + this.memberIDs );
+                // console.log('Index = ' + this.barChartLabels.indexOf('Minute ' + String(this.dataEvents[i].formattedMinute)));
+
+                // Is this a new minute, then add the minute to the barChartLabels array?
+                if ( this.barChartLabels.indexOf('Minute ' + String(this.dataEvents[i].formattedMinute)) === -1 ) {
+                    this.barChartLabels.push('Minute ' + String(this.dataEvents[i].formattedMinute));
+                    // console.log('Adding the following minute --> ' + this.dataEvents[i].formattedMinute);
+                } else {
+                    // console.log('This is already included --> ' + this.dataEvents[i].formattedMinute);
+                }
+
+                // Is this a new member ID, then create a new data object
+                if ( this.memberIDs.indexOf(String(this.dataEvents[i].memberID)) === -1 ) {
+                    this.memberIDs.push(String(this.dataEvents[i].memberID));
+                    this.localBarChartData[i] = {}; // create a new object for this memberID
+                    this.localBarChartData[i].label = this.dataEvents[i].memberID;  // assign the member ID
+                    this.localBarChartData[i].data = []; // create new array for step counts
+                    // console.log('Adding the following member ID --> ' + this.dataEvents[i].memberID);
+                } else {
+                    // console.log('This member ID is already included --> ' + this.dataEvents[i].memberID);
+                }
+
+                // determine what the correct data array index for the current user
+                for (let j = 0; j < this.localBarChartData.length; j++) {
+                    if (this.localBarChartData[j].label === this.dataEvents[i].memberID) {
+                        this.localBarChartData[j].data.push(this.dataEvents[i].stat);
+                        // console.log('HR = ' + this.dataEvents[i].stat + ' for memberID ' + this.localBarChartData[j].label);
+                        break; // got the correct array index, so no need to continue
+                    }
+                } // - end of data array for loop
+            } // end of dataEvents data consimption for loop
+
+            // now assign the bar chart data so the chart will display
+            this.barChartData = this.localBarChartData;
+        });
+
+    } // end of else ('5K or '10K')
+  } // displayEvent
 
 }
+
+
+
 

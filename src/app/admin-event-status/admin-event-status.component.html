@@ -38,7 +38,7 @@
                 </table>
             </div>
         </div>
-        <div>
+        <div *ngIf="barChartData && barChartData.length > 0 && barChartLabels && barChartLabels.length > 0">
           <div style="display: block">
             <canvas baseChart
                     [datasets]="barChartData"
