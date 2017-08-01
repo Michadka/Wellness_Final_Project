@@ -17,10 +17,6 @@ export class NavigationComponent implements OnInit {
  { }
 
   ngOnInit() {
-    console.log("before adminStatus");
-    console.log(sessionStorage.getItem("adminStatus"));
-    console.log(this.adminStatus);
-    console.log("after adminStatus");
   }
 
   ngAfterContentChecked(){

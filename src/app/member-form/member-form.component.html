@@ -10,7 +10,7 @@
             <input [ngModel]="member?.id" ngModel #id="ngModel" type="hidden" name="id">
             <h2 class="text-center" style="margin:0px 0px 30px;">{{instructions}}</h2>
             <div class="form-group"><small>Email</small>
-                <input [ngModel]="member?.email"  #email="ngModel"  class="form-control" type="email" name="email" placeholder="Email">
+                <input [ngModel]="member?.email"  #email="ngModel"  class="form-control" type="email" name="email" placeholder="Email" required pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
             </div>
             <span *ngIf="formErrors.email" class="text-danger">
                 {{ formErrors.email }}
@@ -19,7 +19,7 @@
                 <input class="form-control" type="email" name="email-repeat" placeholder="Email (Repeat)">
             </div>-->
             <div class="form-group"><small>Password </small>
-                <input [ngModel]="member?.password"  #password="ngModel"  class="form-control" type="password" name="password" placeholder="Password">
+                <input [ngModel]="member?.password"  #password="ngModel"  class="form-control" type="password" name="password" placeholder="1 upper, 1 lower, 1 num, 8 char min" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$">
             </div>
             <span *ngIf="formErrors.password" class="text-danger">
                 {{ formErrors.password }}
@@ -28,7 +28,7 @@
                 <input class="form-control" type="password" name="password-repeat" placeholder="Password (repeat)">
             </div>-->
             <div class="form-group"><small>Screen Name</small>
-                <input [ngModel]="member?.screenName"  #screenName="ngModel"  class="form-control" type="screenName" name="screenName" placeholder="Screen Name">
+                <input [ngModel]="member?.screenName"  #screenName="ngModel"  class="form-control" type="screenName" name="screenName" placeholder="Screen Name (6 characters minimum)" required minlength="6">
             </div>
             <span *ngIf="formErrors.screenName" class="text-danger">
                 {{ formErrors.screenName }}
@@ -36,13 +36,13 @@
             <div *ngIf="!user" class="form-group">
                 <div class="checkbox">
                     <label class="control-label">
-                        <input type="checkbox">I agree to the <a href="about.html">License Terms </a></label>
+                        <input type="checkbox" required>I agree to the <a href="about.html">License Terms </a></label>
                 </div>
             </div>
             <div class="form-group" style="height:110px;">
                 <button  *ngIf="!user" [disabled]="!memberForm.form.valid" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Sign Up</button>
                 <button  *ngIf="user" [disabled]="!memberForm.form.valid" class="btn btn-primary btn-block" type="submit" style="margin:12px 0px 0px;background-color:#269d9d;">Save</button>
-                <button class="btn btn-primary btn-block" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;">Cancel </button>
+                <button class="btn btn-primary btn-block" type="reset" style="margin:18px 0px 0px;background-color:#269d9d;">Cancel </button>
             </div>
             <a *ngIf="!user" href="login.html" class="already">You already have an account? Login here.</a>
         </form>

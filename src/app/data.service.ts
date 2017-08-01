@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
+import { NgForm } from '@angular/forms';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
@@ -18,7 +22,12 @@ export class DataService {
     private facebookKey = '&access_token=4433558a0fdb8361de663e4814185a2d'
 
 
-    constructor (private http: Http) {
+    constructor (
+        private http: Http,
+        private router: Router,
+        private location: Location
+        )
+    {
         console.log(`${this.facebookUrl}${this.facebookUser}${this.facebookMessage}${this.facebookKey}`)
 
     }
@@ -61,8 +70,10 @@ export class DataService {
     editRecord(endpoint: string, record:any, id:number): Observable<object> {
         console.log("data.service - editRecord()")
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
-        console.log('Object = ' + JSON.stringify(record[0]));
+        console.log('boobObject = ' + JSON.stringify(record));
         console.log('APIURL = ' + apiUrl);
+        sessionStorage.setItem('currentUser', JSON.stringify(record));//jah
+        console.log("blep" + sessionStorage.getItem('currentUser'));//jah
         return this.http.put(apiUrl, record)
             .map(this.extractData)
             .catch(this.handleError);

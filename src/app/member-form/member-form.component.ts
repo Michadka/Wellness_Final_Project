@@ -37,28 +37,14 @@ export class MemberFormComponent implements OnInit {
     if (this.member !== null) {
         member.value.admin = this.member.admin;
       }
-    console.log('member.value I = ' + member.value.id)
-    console.log('member.value E = ' + member.value.email)
-    console.log('member.value P = ' + member.value.password)
-    console.log('member.value S = ' + member.value.screenName)
-    console.log('member.value A = ' + member.value.admin)
     if (typeof member.value.id === 'number') {
       console.log('identified an id exists so edit member')
       this.dataService.editRecord('member', member.value, member.value.id)
           .subscribe(
             member => this.successMessage = 'Record updated successfully',
-            error =>  this.errorMessage = <any>error);
-            sessionStorage.setItem('currentUser', JSON.stringify(this.member));
-    console.log('member.value I2 = ' + member.value.id)
-    console.log('member.value E2 = ' + member.value.email)
-    console.log('member.value P2 = ' + member.value.password)
-    console.log('member.value S2 = ' + member.value.screenName)
-    console.log('member.value A2 = ' + member.value.admin)
-    console.log("session current use = " + JSON.parse(sessionStorage.getItem("currentUser[screenName]")))
-    //console.log({this.currentUser})
-    // console.log('member.value P2 = ' + currentUser.password)
-    // console.log('member.value S2 = ' + currentUser.screenName)
-    // console.log('member.value A2 = ' + currentUser.admin)
+            error => this.errorMessage = <any>error
+          );
+    alert("Your data has been saved!")
     }else {
       this.dataService.addRecord('member', member.value)
           .subscribe(
@@ -68,12 +54,9 @@ export class MemberFormComponent implements OnInit {
               sessionStorage.setItem('currentUser', JSON.stringify(this.member));
               sessionStorage.setItem('adminStatus', JSON.stringify(this.member.admin));
               this.router.navigate(['/home']);
-              console.log("A")
-              console.log(JSON.stringify(this.member))
-              console.log(JSON.parse(sessionStorage.getItem("currentUser")))
-              console.log("B")
-          },
-            error =>  this.errorMessage = <any>error)
+            },
+            error => this.errorMessage = <any>error
+          )
             this.member = {};
     }
   }

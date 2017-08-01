@@ -18,13 +18,13 @@
           <select class="form-control" [(ngModel)]="wellnessEvent.eventType" name="eventType">
                   <!--<option *ngFor="let et of eventTypes" value= {{et.num}}>{{et.name}}</option>  working except for preset on update-->
                   <!--<option value="1"  disabled selected>Please select an event type</option>-->
+            <option disabled>Please select an event type</option>
             <option *ngFor="let eventType of eventTypes" [ngClass]= "{'eventNum':eventType.num}">{{eventType.name}}</option>
-            <option disabled selected>Please select an event type</option>
           </select>
           <!--</div>-->
         </div>
         <div class="form-group col-xs-8"><small>Event Name:</small>
-          <input [(ngModel)]="wellnessEvent.eventName" #eventName="ngModel" class="form-control" type="text" name="eventName" multiple="" placeholder="Event Name" autofocus="">
+          <input [(ngModel)]="wellnessEvent.eventName" #eventName="ngModel" class="form-control" type="text" name="eventName" multiple="" placeholder="Event Name" required autofocus="">
         </div>
       </div>
       <!--<div class="row">
@@ -36,11 +36,11 @@
       <div class="row">
         <div class="form-group col-xs-6"><small>Start Date:</small>
           <!--<input [(ngModel)]="wellnessEvent.startsOn" #startsOn="ngModel" class="form-control" type="datetime-local" name="startsOn" required="">-->
-          <input [(ngModel)]="wellnessEvent.startsOn" #startsOn="ngModel" class="form-control" type="date-local" name="startsOn" placeholder="YYYY-MM-DD" required="">
+          <input [(ngModel)]="wellnessEvent.startsOn" #startsOn="ngModel" class="form-control" type="date-local" name="startsOn" placeholder="YYYY-MM-DD" required pattern="[0-9]{4}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{2}">
         </div>
         <div class="form-group col-xs-6"><small>End Date:</small>
           <!--<input [(ngModel)]="wellnessEvent.endsOn" #endsOn="ngModel" class="form-control" type="datetime-local" name="endsOn" required="">-->
-          <input [(ngModel)]="wellnessEvent.endsOn" #endsOn="ngModel" class="form-control" type="date-local" name="endsOn" placeholder="YYYY-MM-DD" required="">
+          <input [(ngModel)]="wellnessEvent.endsOn" #endsOn="ngModel" class="form-control" type="date-local" name="endsOn" placeholder="YYYY-MM-DD" required pattern="[0-9]{4}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{2}">
         </div>
       </div>
       <!--<div class="row">
@@ -50,20 +50,20 @@
     </div>-->
       <div class="row">
         <div class="form-group col-xs-12"><small>Street Address: </small>
-          <input [(ngModel)]="wellnessEvent.streetAddress" #streetAddress="ngModel" class="form-control" type="text" name="streetAddress" required="" placeholder="# Street">
+          <input [(ngModel)]="wellnessEvent.streetAddress" #streetAddress="ngModel" class="form-control" type="text" name="streetAddress" required placeholder="# Street">
         </div>
       </div>
       <div class="row">
         <div class="form-group col-xs-12"><small>City: </small>
-          <input [(ngModel)]="wellnessEvent.city" #city="ngModel" class="form-control" type="text" name="city" required="" placeholder="City">
+          <input [(ngModel)]="wellnessEvent.city" #city="ngModel" class="form-control" type="text" name="city" required placeholder="City">
         </div>
       </div>
       <div class="row">
         <div class="form-group col-xs-6"><small>State: </small>
-          <input [(ngModel)]="wellnessEvent.state" #state="ngModel" class="form-control" type="text" name="state" required="" placeholder="SS">
+          <input [(ngModel)]="wellnessEvent.state" #state="ngModel" class="form-control" type="text" name="state" required placeholder="ST" maxlength="2" pattern="[a-zA-Z]{2}">
         </div>
         <div class="form-group col-xs-6"><small>Zip Code: </small>
-          <input [(ngModel)]="wellnessEvent.zipCode" #zipCode="ngModel" class="form-control" type="text" name="zipCode" required="" placeholder="Zip Code">
+          <input [(ngModel)]="wellnessEvent.zipCode" #zipCode="ngModel" class="form-control" type="text" name="zipCode" required placeholder="Zip Code" pattern="^\d{5}(?:[-\s]\d{4})?$">
         </div>
       </div>
       <!--<div class="row">
@@ -73,7 +73,7 @@
     </div>-->
       <div class="row">
         <div class="form-group col-xs-12"><small>Location Name (ex. Parson's Field, High School): </small>
-          <input [(ngModel)]="wellnessEvent.location" #location="ngModel" class="form-control" type="text" name="location" required="" placeholder="Location">
+          <input [(ngModel)]="wellnessEvent.location" #location="ngModel" class="form-control" type="text" name="location" required placeholder="Location">
         </div>
       </div>
       <div class="row">
@@ -87,10 +87,10 @@
           <button class="btn btn-primary btn-block" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;">Submit Event</button>
           <button class="btn btn-primary btn-block" [routerLink]="['/home']" type="submit" style="margin:18px 0px 0px;background-color:#269d9d;">Cancel</button>-->
         <div class="form-group col-xs-6">
-          <button class="btn btn-primary btn-block" type="submit" style="background-color:#269d9d;">Submit Event</button>
+          <button [disabled]="!eventForm.form.valid" class="btn btn-primary btn-block" type="submit" style="background-color:#269d9d;">Submit Event</button>
         </div>
         <div class="form-group col-xs-6">
-          <button class="btn btn-primary btn-block" [routerLink]="['/home']" type="submit" style="background-color:#269d9d;">Cancel</button>
+          <button class="btn btn-primary btn-block" type="reset" style="background-color:#269d9d;">Cancel</button>
         </div>
       </div>
   <!--</div>-->
