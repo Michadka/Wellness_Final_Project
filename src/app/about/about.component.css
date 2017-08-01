@@ -22,10 +22,15 @@
   }
 }
 
+.container .intro{
+  width: 100%;
+  margin:0 auto;;
+}
+
 .article-list .intro {
   font-size:16px;
   max-width:500px;
-  margin:0 auto;
+  /*margin:0 auto;*/
 }
 
 .article-list .intro p {
@@ -299,4 +304,8 @@
 
 .img-circle {
   height: 120px;
+}
+
+.TermsOfService{
+  margin: 1px;
 }
