@@ -28,6 +28,7 @@ import { EventMapComponent } from './event-map/event-map.component';
 import { DataTablesModule } from 'angular-datatables';
 import { AdminEventStatusComponent } from './admin-event-status/admin-event-status.component';
 import { ChartsModule } from 'ng2-charts';
+import { WePreviousComponent } from './we-previous/we-previous.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { ChartsModule } from 'ng2-charts';
     AdminUserComponent,
     FacebookComponent,
     EventMapComponent,
-    AdminEventStatusComponent
+    AdminEventStatusComponent,
+    WePreviousComponent
   ],
   imports: [
     BrowserModule,

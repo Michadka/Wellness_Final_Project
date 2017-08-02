@@ -4,52 +4,57 @@
   </div>
 </div>
 <main class="container pt-5">
-        <div class="card mb-5">
-            <div class="card-block p-0">
-                <table class="table table-bordered table-sm m-0">
-                    <thead class="">
-                        <tr>
-                            <th>Stats/Users</th>
-                            <th>Event Name</th>
-                            <th>Event Type</th>
-                            <th>Description</th>
-                            <th>Location</th>                            
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let e of events">
-                            <td>
-                                <label class="custom-control">
-                                    <button (click)="displayEvent(e.id, e.eventType)" class="btn btn-warning"><em class="fa fa-bar-chart"></em></button>
-                                    <!--<button class="btn btn-info"[routerLink]="['adminuser/display/', e.id, e.eventName]"  onclick="this.blur()"><em class="fa fa-users"></em></button> -->
-                                    <button class="btn btn-info"[routerLink]="['adminuser/display/', e.id, e.eventName]"><em class="fa fa-users"></em></button>                                   
-                                </label>
-                            </td>
-                            <td>{{e.eventName}}</td>
-                            <td>{{e.eventType}}</td>
-                            <td>{{e.description}}</td>
-                            <td>{{e.location}}</td>
-                            <td>{{e.startsOn}}</td>
-                            <td>{{e.endsOn}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="card mb-5">
+        <div class="card-block p-0">
+            <table class="table table-bordered table-sm m-0">
+                <thead class="">
+                    <tr>
+                        <th>Stats/Users</th>
+                        <th>Event Name</th>
+                        <th>Event Type</th>
+                        <th>Description</th>
+                        <th>Location</th>                            
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let e of events">
+                        <td>
+                            <label class="custom-control">
+                              <button (click)="displayEvent(e.id, e.eventType, e.eventName)" class="btn btn-warning"><em class="fa fa-bar-chart"></em></button>                                 
+                                <!--<button class="btn btn-info"[routerLink]="['adminuser/display/', e.id, e.eventName]"  onclick="this.blur()"><em class="fa fa-users"></em></button> -->
+                                <button class="btn btn-info"[routerLink]="['adminuser/display/', e.id, e.eventName]"><em class="fa fa-users"></em></button>                                   
+                            </label>
+                        </td>
+                        <td>{{e.eventName}}</td>
+                        <td>{{e.eventType}}</td>
+                        <td>{{e.description}}</td>
+                        <td>{{e.location}}</td>
+                        <td>{{e.startsOn}}</td>
+                        <td>{{e.endsOn}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <div *ngIf="barChartData && barChartData.length > 0 && barChartLabels && barChartLabels.length > 0">
-          <div style="display: block">
-            <canvas baseChart
-                    [datasets]="barChartData"
-                    [labels]="barChartLabels"
-                    [options]="barChartOptions"
-                    [legend]="barChartLegend"
-                    [chartType]="barChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></canvas>
-          </div>
-          <!--<button (click)="randomize()">Update</button>-->
-        </div>
-    </main>
+    </div>
+  <div class="window-title">
+    <div class="container hero">
+      <h2 class="text-center">{{title}}...</h2>
+    </div>
+  </div>
+    <div *ngIf="barChartData && barChartData.length > 0 && barChartLabels && barChartLabels.length > 0">
+      <div style="display: block">
+        <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+      <!--<button (click)="randomize()">Update</button>-->
+    </div>
+</main>
 

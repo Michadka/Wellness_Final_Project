@@ -7,8 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  user: object = JSON.parse(sessionStorage.getItem("currentUser"));
-  
+  user: object = JSON.parse(sessionStorage.getItem('currentUser'));
+
   constructor() { }
 
   ngOnInit() {

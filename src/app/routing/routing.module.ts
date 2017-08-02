@@ -9,6 +9,7 @@ import { HomeComponent }   from '../home/home.component';
 import { MemberComponent }   from '../member/member.component';
 import { MemberFormComponent }   from '../member-form/member-form.component';
 import { WellnesseventComponent }   from '../wellnessevent/wellnessevent.component';
+import { WePreviousComponent }   from '../we-previous/we-previous.component';
 import { WellnesseventFormComponent }   from '../wellnessevent-form/wellnessevent-form.component';
 import { AdminComponent }   from '../admin/admin.component';
 import { EventMapComponent }   from '../event-map/event-map.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'member/edit', component: MemberFormComponent },
   { path: 'member/add', component: MemberFormComponent },
   { path: 'wellnessevent',  component: WellnesseventComponent },
+  { path: 'we-previous',  component: WePreviousComponent },
   // { path: 'wellnessevent-form/:id',  component: WellnesseventFormComponent },
   { path: 'admin-event/wellnessevent/edit/:id', component: WellnesseventFormComponent }, // DAB
   { path: 'admin-event/adminuser/display/:id/:name', component: AdminUserComponent }, // DAB

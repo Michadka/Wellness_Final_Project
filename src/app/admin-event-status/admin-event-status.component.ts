@@ -22,6 +22,7 @@ export class AdminEventStatusComponent implements OnInit {
   data: any[];   // step count data
   layout: any[]; // step count layout
   memberIDs: string[];
+  title: string;
   public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true
@@ -334,17 +335,19 @@ export class AdminEventStatusComponent implements OnInit {
     this.barChartLabels = [];
     this.barChartData = [];
     this.memberIDs = [];
-    this.displayEvent(1, 'Step Count');
+    // this.displayEvent(this.user.id, 'Step Count');
+    this.title = 'Select an event...';
     // this.displayEvent(5, '10K');
   }
 
-  displayEvent(id: number, type: string) {
+  displayEvent(id: number, type: string, eventName: string) {
     // getAllStepsOverTimeRowsByEvent
 
     console.log('Display Stats Event # = ' + id);
     this.barChartLabels = [];
     this.localBarChartData = [];
     this.memberIDs = [];
+    this.title = eventName;
     if (type === 'Step Count') {
       console.log('Event = Step Count');
 
