@@ -13,11 +13,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
 
-    private baseUrl = 'http://localhost:8080/api/'
-    private baseLoginUrl = 'http://localhost:8080/'
+    // private baseUrl = 'http://localhost:8080/api/'
+    // private baseLoginUrl = 'http://localhost:8080/'
 
-    // private baseUrl = 'https://ironyardwellness.herokuapp.com/api/'
-    // private baseLoginUrl = 'https://ironyardwellness.herokuapp.com/'
+    private baseUrl = 'https://ironyardwellness.herokuapp.com/api/'
+    private baseLoginUrl = 'https://ironyardwellness.herokuapp.com/'
 
     private facebookUrl = 'http://graph.facebook.com/'
     private facebookUser = 'michadka/feed?'
