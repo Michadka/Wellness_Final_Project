@@ -62,7 +62,8 @@ export class AdminComponent implements OnInit {
       adminObj = this.adminOn;
     }
 
-    this.dataService.editRecord('member', adminObj, id)
+    // console.log('##################################### within admin.component and updateUser');
+    this.dataService.editEventRecord('member', adminObj, id)
     .subscribe(
       user => {this.getUsers()
       this.adminStatus = JSON.parse(sessionStorage.getItem("adminStatus"));}
@@ -74,7 +75,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.memberID = (JSON.parse(sessionStorage.getItem('currentUser'))).id;
+    this.memberID = (JSON.parse(sessionStorage.getItem("currentUser"))).id;
     this.getUsers();
   }
 

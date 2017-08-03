@@ -13,11 +13,11 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
 
-    // private baseUrl = 'http://localhost:8080/api/'
+    private baseUrl = 'http://localhost:8080/api/'
+    private baseLoginUrl = 'http://localhost:8080/'
 
-
-    private baseUrl = 'https://ironyardwellness.herokuapp.com/api/'
-    private baseLoginUrl = 'https://ironyardwellness.herokuapp.com/'
+    // private baseUrl = 'https://ironyardwellness.herokuapp.com/api/'
+    // private baseLoginUrl = 'https://ironyardwellness.herokuapp.com/'
 
     private facebookUrl = 'http://graph.facebook.com/'
     private facebookUser = 'michadka/feed?'
@@ -71,12 +71,23 @@ export class DataService {
     }
 
     editRecord(endpoint: string, record:any, id:number): Observable<object> {
-        console.log("data.service - editRecord()")
+        console.log("data.service - editRecord()");
+        // tslint:disable-next-line:no-debugger
         let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
         console.log('boobObject = ' + JSON.stringify(record));
         console.log('APIURL = ' + apiUrl);
         sessionStorage.setItem('currentUser', JSON.stringify(record));//jah
         console.log("blep" + sessionStorage.getItem('currentUser'));//jah
+        return this.http.put(apiUrl, record)
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    editEventRecord(endpoint: string, record:any, id:number): Observable<object> {
+        console.log("data.service - editEventRecord()")
+        let apiUrl = `${this.baseUrl}${endpoint}/${id}`;
+        console.log('daveObject = ' + JSON.stringify(record));
+        console.log('APIURL = ' + apiUrl);
         return this.http.put(apiUrl, record)
             .map(this.extractData)
             .catch(this.handleError);

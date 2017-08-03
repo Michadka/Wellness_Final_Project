@@ -107,7 +107,7 @@ export class WellnesseventFormComponent implements OnInit {
     console.log('event.value location = ' + event.value.location);
     console.log('event.value description = ' + event.value.description);
     if (typeof event.value.id === 'number') {
-      this.dataService.editRecord('update/event', event.value, event.value.id)
+      this.dataService.editEventRecord('update/event', event.value, event.value.id)
           .subscribe(
             event =>  {
               this.successMessage = 'Record updated successfully';

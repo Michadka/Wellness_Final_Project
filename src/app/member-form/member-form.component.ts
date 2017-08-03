@@ -39,6 +39,7 @@ export class MemberFormComponent implements OnInit {
       }
     if (typeof member.value.id === 'number') {
       console.log('identified an id exists so edit member')
+      console.log('##################################### within member-form.component and saveMember');
       this.dataService.editRecord('member', member.value, member.value.id)
           .subscribe(
             member => this.successMessage = 'Record updated successfully',

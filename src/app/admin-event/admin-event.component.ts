@@ -37,7 +37,7 @@ export class AdminEventComponent implements OnInit {
       .subscribe(
         events => {
           this.events = events
-          console.log(this.events)
+          // console.log(this.events)
           this.dtTrigger.next();
         });
      
@@ -64,7 +64,7 @@ export class AdminEventComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-      console.log('Yes click with id = ' + id);
+      // console.log('Yes click with id = ' + id);
       this.dataService.deleteRecord('delete/event', id)
           .subscribe(
             // event => this.successMessage = 'Event deleted successfully',

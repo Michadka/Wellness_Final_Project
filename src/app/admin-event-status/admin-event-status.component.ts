@@ -326,7 +326,7 @@ export class AdminEventStatusComponent implements OnInit {
       .subscribe(
         events => {
           this.events = events
-          console.log(this.events)
+        //   console.log(this.events)
         });
   }
 
@@ -348,35 +348,43 @@ export class AdminEventStatusComponent implements OnInit {
     this.localBarChartData = [];
     this.memberIDs = [];
     this.title = eventName;
+    this.dataEvents = [];
     if (type === 'Step Count') {
-      console.log('Event = Step Count');
+    //   console.log('Event = Step Count');
 
       this.dataService.getRecords('activity/getAllStepsOverTimeRowsByEvent/' + id)
       .subscribe(
         dataEvents => {
           this.dataEvents = dataEvents;
-          console.log('dataEvents = ' + this.dataEvents);
+          if (this.dataEvents.length === 0) {
+              this.title = this.title + ' - No Stats Available!';
+          }
+        //   console.log('dataEvents = ' + this.dataEvents);
           // put all of the code below within this if block --> "HERE"
             for ( let i = 0; i < this.dataEvents.length; i++ ) {
                 // console.log('chart labels Array contains --> ' + this.barChartLabels );
                 // console.log('memberIDs Array contains --> ' + this.memberIDs );
-                // console.log('Index = ' + this.barChartLabels.indexOf(String(this.dataEvents[i].dayOfSteps)));
+                // console.log('Index = ' + this.barChartLabels.indexOf(String(this.dataEvents[i].formattedTime)));
 
                 // Is this a new date/day, then add the date/day to the barChartLabels array?
-                if ( this.barChartLabels.indexOf(String(this.dataEvents[i].dayOfSteps)) === -1 ) {
-                    this.barChartLabels.push(String(this.dataEvents[i].dayOfSteps));
-                    // console.log('Adding the following date --> ' + this.dataEvents[i].dayOfSteps);
+                if ( this.barChartLabels.indexOf(String(this.dataEvents[i].formattedTime)) === -1 ) {
+                    this.barChartLabels.push(String(this.dataEvents[i].formattedTime));
+                    // console.log('Adding the following date --> ' + this.dataEvents[i].formattedTime);
                 }
                 // else {
-                    // console.log('This is already included --> ' + this.dataEvents[i].dayOfSteps);
+                    // console.log('This is already included --> ' + this.dataEvents[i].formattedTime);
                 // }
 
                 // Is this a new member ID, then create a new data object
                 if ( this.memberIDs.indexOf(String(this.dataEvents[i].memberID)) === -1 ) {
                     this.memberIDs.push(String(this.dataEvents[i].memberID));
-                    this.localBarChartData[i] = {}; // create a new object for this memberID
-                    this.localBarChartData[i].label = this.dataEvents[i].memberID;  // assign the member ID
-                    this.localBarChartData[i].data = []; // create new array for step counts
+                    // this.localBarChartData[i] = {}; // create a new object for this memberID
+                    // this.localBarChartData[i].label = this.dataEvents[i].memberID;  // assign the member ID
+                    // this.localBarChartData[i].data = []; // create new array for step counts
+                    this.localBarChartData.push({}); // create a new object for this memberID
+                    const lastIndex = this.localBarChartData.length - 1;
+                    this.localBarChartData[lastIndex].data = []; // create new array for step counts
+                    this.localBarChartData[lastIndex].label = this.dataEvents[i].memberID;  // assign the member ID
                     // console.log('Adding the following member ID --> ' + this.dataEvents[i].memberID);
                 }
                 // else {
@@ -397,11 +405,15 @@ export class AdminEventStatusComponent implements OnInit {
             this.barChartData = this.localBarChartData;
         });
     }else {
-      console.log('Event = 5K or 10K');
+    //   console.log('Event = 5K or 10K');
       this.dataService.getRecords('activity/getAllHeartrateRowsByEvent/' + id)
       .subscribe(
         dataEvents => {
           this.dataEvents = dataEvents;
+          if (this.dataEvents.length === 0) {
+              this.title = this.title + ' - No Stats Available!';
+          }
+        //   console.log('this.dataEvents.length = ' + this.dataEvents.length);
           // put all of the code below within this else block --> "HERE"
             for ( let i = 0; i < this.dataEvents.length; i++ ) {
                 // console.log('#######################################');
@@ -420,28 +432,35 @@ export class AdminEventStatusComponent implements OnInit {
                 // Is this a new member ID, then create a new data object
                 if ( this.memberIDs.indexOf(String(this.dataEvents[i].memberID)) === -1 ) {
                     this.memberIDs.push(String(this.dataEvents[i].memberID));
-                    this.localBarChartData[i] = {}; // create a new object for this memberID
-                    this.localBarChartData[i].label = this.dataEvents[i].memberID;  // assign the member ID
-                    this.localBarChartData[i].data = []; // create new array for step counts
+                    // console.log('---------> k = ' + k);
+                    // console.log('1 - Length of --> this.localBarChartData = ' + this.localBarChartData.length);
+                    this.localBarChartData.push({}); // create a new object for this memberID
+                    const lastIndex = this.localBarChartData.length - 1;
+                    this.localBarChartData[lastIndex].data = []; // create new array for step counts
+                    this.localBarChartData[lastIndex].label = this.dataEvents[i].memberID;  // assign the member ID
+                    // console.log('Created --> ' + JSON.stringify(this.localBarChartData[i]));
                     // console.log('Adding the following member ID --> ' + this.dataEvents[i].memberID);
+                    // console.log('2 - Length of --> this.localBarChartData = ' + this.localBarChartData.length);
                 } else {
                     // console.log('This member ID is already included --> ' + this.dataEvents[i].memberID);
                 }
 
                 // determine what the correct data array index for the current user
-                for (let j = 0; j < this.localBarChartData.length; j++) {
-                    if (this.localBarChartData[j].label === this.dataEvents[i].memberID) {
-                        this.localBarChartData[j].data.push(this.dataEvents[i].stat);
-                        // console.log('HR = ' + this.dataEvents[i].stat + ' for memberID ' + this.localBarChartData[j].label);
-                        break; // got the correct array index, so no need to continue
-                    }
-                } // - end of data array for loop
+                    // console.log('3 - Length of --> this.localBarChartData = ' + this.localBarChartData.length);
+                    for (let j = 0; j < this.localBarChartData.length; j++) {
+                        // console.log('Object @ l = ' + l + JSON.stringify(this.localBarChartData[j]));
+                        if (this.localBarChartData[j].label === this.dataEvents[i].memberID) {
+                            this.localBarChartData[j].data.push(this.dataEvents[i].stat);
+                            // console.log('HR = ' + this.dataEvents[i].stat + ' for memberID ' + this.localBarChartData[j].label);
+                            break; // got the correct array index, so no need to continue
+                        }
+                    } // - end of data array for loop
+                // }
             } // end of dataEvents data consimption for loop
 
             // now assign the bar chart data so the chart will display
             this.barChartData = this.localBarChartData;
         });
-
     } // end of else ('5K or '10K')
   } // displayEvent
 

@@ -48,7 +48,8 @@ export class FacebookComponent implements OnInit {
     console.log("member.value S = " + member.value.screenName)
     console.log("member.value A = " + member.value.admin)
     if(typeof member.value.id === "number"){
-      console.log("identified an id exists so edit member")
+      console.log("identified an id exists so edit member");
+      console.log('##################################### within facebook.component and saveMember');
       this.dataService.editRecord("member", member.value, member.value.id)
           .subscribe(
             member => this.successMessage = "Record updated successfully",

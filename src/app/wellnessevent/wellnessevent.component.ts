@@ -37,15 +37,18 @@ export class WellnesseventComponent implements OnInit {
         events => {
           this.allEvents = events;
           this.getRegisteredEvents();
-          console.log(JSON.stringify(this.allEvents));
+          // console.log(JSON.stringify(this.allEvents));
           this.allEvents.sort(function(a, b){
               return b.members.length - a.members.length;
           });
+          // console.log('1 - Current User = ' + JSON.stringify(this.user));
           this.dtTrigger.next();
+          // console.log('2 - Current User = ' + JSON.stringify(this.user));
         });
   }
 
   getRegisteredEvents() {
+
     this.dataService.getRecords('registeredEvents/' + this.user.id)
       .subscribe(
         events => {
@@ -56,12 +59,12 @@ export class WellnesseventComponent implements OnInit {
             const tempObj: any = this.userEvents[i];
             this.userEventIDs.push(tempObj.id);
           }
-          console.log('userEventIDs are = ' + this.userEventIDs);
+          // console.log('userEventIDs are = ' + this.userEventIDs);
           // loop through all events and repurpose the members ID
           for (let j = 0; j < this.allEvents.length; j++) {
             // console.log(this.allEvents[j].id);
             if (this.userEventIDs.includes(this.allEvents[j].id) ) {
-              console.log(this.allEvents[j].id + ' is one of the users events.');
+              // console.log(this.allEvents[j].id + ' is one of the users events.');
               this.allEvents[j].members = true;
             }else {
               this.allEvents[j].members = false;
@@ -71,8 +74,8 @@ export class WellnesseventComponent implements OnInit {
   }
 
   updateUser(id, checked) {
-    console.log('Clicked ID = ' + id);
-    console.log('Check was = ' + checked);
+    // console.log('Clicked ID = ' + id);
+    // console.log('Check was = ' + checked);
     let command: string;
     let anArray = [ { "id": id } ];
 
@@ -81,8 +84,9 @@ export class WellnesseventComponent implements OnInit {
     } else {
       command = 'addMemberToEvents';
     }
+    // console.log('3 - Current User = ' + JSON.stringify(this.user));
 
-    this.dataService.editRecord(command, anArray, this.user.id)
+    this.dataService.editEventRecord(command, anArray, this.user.id)
       .subscribe(
         user => {
           this.userEventIDs = [];
@@ -101,8 +105,8 @@ export class WellnesseventComponent implements OnInit {
   }
 
   saveChangesToEventList(idsToChange) {
-  console.log('idsToChange')
-  console.log(idsToChange)
+  // console.log('idsToChange')
+  // console.log(idsToChange)
   // need status of join select box, eventID and memberID
 
   }
